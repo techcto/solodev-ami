@@ -3,6 +3,10 @@ mkfs.ext4 /dev/xvdb
 echo '/dev/xvdb /var/www/Solodev/clients/solodev ext4 defaults,auto,noexec 0 0'
 blockdev --setra 32 /dev/xvdb
 
+# #Init Drive
+# echo '/dev/sdm /mongo ext4 defaults,auto,noexec 0 0' >> /etc/fstab
+# blockdev --setra 32 /dev/sdm
+
 #Custom Install for Single Servers
 tee /root/init-solodev.sh <<EOF
 #!/bin/bash
@@ -35,7 +39,11 @@ chmod 700 /root/dumpmysql.sh
 #Add Mysql dump to Crontab
 (crontab -l 2>/dev/null; echo "30 13 * * * /root/dumpmysql.sh") | crontab -
 
-#Configure Mongo			          
+#Configure Mongo	
+echo "rs.initiate();" >> /tmp/configmongo.js
+mongo < /tmp/configmongo.js
+rm -Rf /tmp/configmongo.js
+
 echo 'use solodev_views;' >> /tmp/mongouser.js
 echo 'db.createUser({"user": "solodevsql", "pwd": "\$EC2_INSTANCE_ID", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /tmp/mongouser.js
 mongo < /tmp/mongouser.js
