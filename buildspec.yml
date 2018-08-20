@@ -1,0 +1,37 @@
+---
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - yum install -y tar wget unzip sudo
+      - curl -qL -o packer.zip https://releases.hashicorp.com/packer/0.12.3/packer_0.12.3_linux_amd64.zip && unzip packer.zip
+      - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
+      - curl -O https://bootstrap.pypa.io/get-pip.py
+      - python get-pip.py
+      - pip install awscli
+      - aws --version
+      - curl -qL -o aws_credentials.json http://169.254.170.2/$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI > aws_credentials.json
+      - aws configure set region $AWS_REGION
+      - aws configure set aws_access_key_id `./jq -r '.AccessKeyId' aws_credentials.json`
+      - aws configure set aws_secret_access_key `./jq -r '.SecretAccessKey' aws_credentials.json`
+      - aws configure set aws_session_token `./jq -r '.Token' aws_credentials.json`
+      - cd chef && ls -al
+      - sudo chmod 700 *.sh && sudo ./initChef.sh && sudo ./package.sh && cd ..
+      - chmod 700 hashicorp/solodev-phpfpm-72/scripts/install-solodev.sh
+      - sudo hashicorp/solodev-phpfpm-72/scripts/install-solodev.sh
+  build:
+    commands:
+      - echo "Validating - solodev-cluster-aws1-packer.json"
+      - ./packer validate hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
+      - echo "Building HashiCorp Packer template - solodev-cluster-aws1-packer.json"
+      - ./packer build hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
+      - echo "Validating - solodev-cluster-aws2-packer.json"
+      - ./packer validate hashicorp/solodev-phpfpm-72/config/solodev-cluster-aws2-packer.json
+      - echo "Building HashiCorp Packer template - solodev-cluster-aws2-packer.json"
+      - ./packer build hashicorp/solodev-phpfpm-72/config/solodev-cluster-aws2-packer.json
+      - echo "Building HashiCorp Packer template - solodev-single-packer.json"
+      - ./packer build hashicorp/solodev-phpfpm-72/config/solodev-single-packer.json
+  post_build:
+    commands:
+      - echo "HashiCorp Packer build completed on `date`"
