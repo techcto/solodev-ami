@@ -45,7 +45,7 @@ mongo < /tmp/configmongo.js
 rm -Rf /tmp/configmongo.js
 
 echo 'use solodev_views;' >> /tmp/mongouser.js
-echo 'db.createUser({"user": "solodevsql", "pwd": "'$EC2_INSTANCE_ID'", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> mongouser.js
+echo 'db.createUser({"user": "solodevsql", "pwd": "'$EC2_INSTANCE_ID'", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /tmp/mongouser.js
 mongo < /tmp/mongouser.js
 rm -Rf /tmp/mongouser.js
 
