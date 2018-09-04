@@ -1,7 +1,10 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
-        "aws_ami_name": "solodev-cluster-aws-v{{env `SOLODEV_RELEASE`}}"
+        "aws_ami_name": "solodev-cluster-aws-v{{env `SOLODEV_RELEASE`}}",
+        "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
+        "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
+        "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}"
     },
 
     "builders": [{
@@ -12,6 +15,7 @@
         "ssh_username": "ec2-user",
         "ami_name": "{{user `aws_ami_name`}}",
         "ami_description": "Solodev CMS - Enterprise Cluster Edition",
+        "ami_users": ["{{user `owner_account_id`}}", "{{user `guest1_account_id`}}", "{{user `guest2_account_id`}}"],
         "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {

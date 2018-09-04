@@ -1,6 +1,9 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
+        "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
+        "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
+        "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}",
         "aws_ami_name": "solodev-single-v{{env `SOLODEV_RELEASE`}}"
     },
 
@@ -13,6 +16,7 @@
         "ami_name": "{{user `aws_ami_name`}}",
         "ami_description": "Solodev CMS - Single Server Edition",
         "associate_public_ip_address": "true",
+        "ami_users": ["{{user `owner_account_id`}}", "{{user `guest1_account_id`}}", "{{user `guest2_account_id`}}"],
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
