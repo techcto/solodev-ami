@@ -1,11 +1,7 @@
-#Solodev client mount
+#Solodev Client Drive
 mkfs.ext4 /dev/xvdb
-echo '/dev/xvdb /var/www/Solodev/clients/solodev ext4 defaults,auto,noexec 0 0'
+echo '/dev/xvdb /var/www/Solodev/clients/solodev ext4 defaults,auto,noexec 0 0' >> /etc/fstab
 blockdev --setra 32 /dev/xvdb
-
-# #Init Drive
-# echo '/dev/sdm /mongo ext4 defaults,auto,noexec 0 0' >> /etc/fstab
-# blockdev --setra 32 /dev/sdm
 
 #Custom Install for Single Servers
 tee /root/init-solodev.sh <<EOF
@@ -30,8 +26,8 @@ echo "mkdir -p /var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo "PWD=/var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo 'DBFILE=\$PWD/databases.txt' >> /root/dumpmysql.sh
 echo 'rm -f \$DBFILE' >> /root/dumpmysql.sh
-echo '/usr/bin/mysql -u root -p$EC2_INSTANCE_ID mysql -Ns -e "show databases" > \$DBFILE' >> /root/dumpmysql.sh
-echo 'for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p$EC2_INSTANCE_ID \$i > \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
+echo '/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e "show databases" > \$DBFILE' >> /root/dumpmysql.sh
+echo 'for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p\$EC2_INSTANCE_ID \$i > \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
 echo "# Compress Backups" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do gzip -f \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
 chmod 700 /root/dumpmysql.sh
@@ -45,7 +41,7 @@ mongo < /tmp/configmongo.js
 rm -Rf /tmp/configmongo.js
 
 echo 'use solodev_views;' >> /tmp/mongouser.js
-echo 'db.createUser({"user": "solodevsql", "pwd": "'$EC2_INSTANCE_ID'", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /tmp/mongouser.js
+echo 'db.createUser({"user": "solodevsql", "pwd": "\$EC2_INSTANCE_ID", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /tmp/mongouser.js
 mongo < /tmp/mongouser.js
 rm -Rf /tmp/mongouser.js
 

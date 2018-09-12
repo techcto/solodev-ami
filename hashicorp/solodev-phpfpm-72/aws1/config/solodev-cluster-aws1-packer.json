@@ -44,12 +44,14 @@
             {
                 "device_name": "/dev/xvda",
                 "volume_size": 50,
-                "delete_on_termination": true
+                "delete_on_termination": true,
+                "volume_type": "gp2"
             },
             {
                 "device_name": "/dev/xvdb",
                 "volume_size": 50,
-                "delete_on_termination": true
+                "delete_on_termination": true,
+                "volume_type": "gp2"
             }
         ]
     }],
