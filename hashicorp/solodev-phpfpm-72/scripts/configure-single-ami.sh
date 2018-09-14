@@ -40,7 +40,7 @@ echo "rs.initiate();" >> /tmp/configmongo.js
 mongo < /tmp/configmongo.js
 rm -Rf /tmp/configmongo.js
 
-echo 'use solodev_views;' >> /tmp/mongouser.js
+echo 'use solodev_views;' > /tmp/mongouser.js
 echo 'db.createUser({"user": "solodevsql", "pwd": "\$EC2_INSTANCE_ID", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /root/mongouser.js
 mongo < /tmp/mongouser.js
 rm -Rf /tmp/mongouser.js
@@ -66,9 +66,9 @@ EOF
 
 chmod 700 /root/init-solodev.sh
 
-#Install Cloud Init script
-tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
-#install-config
-runcmd:
- - /root/init-solodev.sh
-EOF
+# #Install Cloud Init script
+# tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
+# #install-config
+# runcmd:
+#  - /root/init-solodev.sh
+# EOF
