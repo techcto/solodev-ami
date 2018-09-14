@@ -10,7 +10,7 @@ EC2_INSTANCE_ID="`wget -q -O - http://169.254.169.254/latest/meta-data/instance-
 test -n "\$EC2_INSTANCE_ID" || die 'cannot obtain instance-id'
 EC2_AVAIL_ZONE="`wget -q -O - http://169.254.169.254/latest/meta-data/placement/availability-zone || die \"wget availability-zone has failed: $?\"`"
 test -n "\$EC2_AVAIL_ZONE" || die 'cannot obtain availability-zone'
-EC2_REGION="`echo $EC2_AVAIL_ZONE | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
+EC2_REGION="\`echo "\$EC2_AVAIL_ZONE" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'\`"
 
 #Create mysql user
 echo "CREATE DATABASE solodev;" >> /tmp/setup.mysql
@@ -22,11 +22,12 @@ mysql -u root --password=\$EC2_INSTANCE_ID < /tmp/setup.mysql
 
 #Create mysql backup script
 echo '#!/bin/bash' >> /root/dumpmysql.sh
+echo "# Example root cronjob:" >> /root/dumpmysql.sh
 echo "mkdir -p /var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo "PWD=/var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
-echo 'DBFILE=\$PWD/databases.txt' >> /root/dumpmysql.sh
-echo 'rm -f \$DBFILE' >> /root/dumpmysql.sh
-echo '/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e "show databases" > \$DBFILE' >> /root/dumpmysql.sh
+echo "DBFILE=\$PWD/databases.txt" >> /root/dumpmysql.sh
+echo "rm -f \\$DBFILE" >> /root/dumpmysql.sh
+echo "/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" > \\$DBFILE" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p\$EC2_INSTANCE_ID \$i > \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
 echo "# Compress Backups" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do gzip -f \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
@@ -36,10 +37,6 @@ chmod 700 /root/dumpmysql.sh
 (crontab -l 2>/dev/null; echo "30 13 * * * /root/dumpmysql.sh") | crontab -
 
 #Configure Mongo	
-echo "rs.initiate();" >> /tmp/configmongo.js
-mongo < /tmp/configmongo.js
-rm -Rf /tmp/configmongo.js
-
 echo 'use solodev_views;' > /tmp/mongouser.js
 echo 'db.createUser({"user": "solodevsql", "pwd": "\$EC2_INSTANCE_ID", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /root/mongouser.js
 mongo < /tmp/mongouser.js
