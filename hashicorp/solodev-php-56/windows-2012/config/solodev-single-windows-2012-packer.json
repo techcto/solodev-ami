@@ -50,7 +50,7 @@
         },
         {
             "type": "windows-shell",
-            "script": "hashicorp/solodev-php-56/windows-2012/scripts/prereq.bat"
+            "script": "hashicorp/solodev-php-56/windows-2012/scripts/prereqs.bat"
         },
         {
             "type": "powershell",
