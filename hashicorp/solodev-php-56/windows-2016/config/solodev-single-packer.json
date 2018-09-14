@@ -39,15 +39,23 @@
             "destination": "C:\\inetpub\\Solodev"
         },
         {
-            "type": "file",
-            "source": "./scripts/SolodevSetup.cmd",
-            "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\scripts"
-        },
-        {
             "type": "windows-shell",
             "inline": [
                 "./scripts/prereqs.bat",
-                "./scripts/sysprep.ps1"
+                "./scripts/SolodevSetup.cmd"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "./scripts/SolodevSetup.cmd",
+            "destination": "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SolodevSetup.cmd"
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SolodevSetup.ps1 -Schedule",
+                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\InitializeInstance.ps1 -Schedule",
+                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SysprepInstance.ps1 -NoShutdown"
             ]
         }
     ]
