@@ -17,7 +17,7 @@
         "ami_description": "Solodev CMS - Single Server Windows Edition",
         "associate_public_ip_address": "true",
         "ami_users": ["{{user `owner_account_id`}}", "{{user `guest1_account_id`}}", "{{user `guest2_account_id`}}"],
-        "user_data_file": "hashicorp/solodev-php-56/windows-2012/scripts/SetUpWinRM.ps1",
+        "user_data_file": "./scripts/SetUpWinRM.ps1",
         "communicator": "winrm",
         "winrm_username": "Administrator",
         "winrm_use_ssl": true,
@@ -35,11 +35,6 @@
     "provisioners": [
         {
             "type": "file",
-            "source": "hashicorp/solodev-php-56/windows-2012/scripts/SolodevSetup.cmd",
-            "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\scripts"
-        },
-        {
-            "type": "file",
             "source": "hashicorp/solodev-php-56/windows-2012/scripts",
             "destination": "C:\\Windows\\Temp\\"
         },
@@ -49,12 +44,16 @@
             "destination": "C:\\inetpub\\Solodev"
         },
         {
-            "type": "windows-shell",
-            "script": "C:\\Windows\\Temp\\scripts\\prereqs.bat"
+            "type": "file",
+            "source": "./scripts/SolodevSetup.cmd",
+            "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\Scripts"
         },
         {
-            "type": "powershell",
-            "script": "C:\\Windows\\Temp\\scripts\\sysprep.ps1"
+            "type": "windows-shell",
+            "inline": [
+                "C:\\Windows\\Temp\\scripts\\prereqs.bat",
+                "C:\\Windows\\Temp\\scripts\\sysprep.ps1"
+            ]
         }
     ]
 }
