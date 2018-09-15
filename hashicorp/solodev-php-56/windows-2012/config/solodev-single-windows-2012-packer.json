@@ -49,6 +49,10 @@
             "destination": "C:\\inetpub\\Solodev"
         },
         {
+            "type": "powershell",
+            "script": "C:\\Windows\\Temp\\scripts\\chocolatey.ps1"
+        },
+        {
             "type": "windows-shell",
             "script": "C:\\Windows\\Temp\\scripts\\prereqs.bat"
         },
