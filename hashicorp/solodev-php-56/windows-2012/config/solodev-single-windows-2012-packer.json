@@ -50,15 +50,15 @@
         },
         {
             "type": "powershell",
-            "script": "C:\\Windows\\Temp\\scripts\\chocolatey.ps1"
+            "script": "hashicorp/solodev-php-56/windows-2012/scripts/chocolatey.ps1"
         },
         {
             "type": "windows-shell",
-            "script": "C:\\Windows\\Temp\\scripts\\prereqs.bat"
+            "script": "hashicorp/solodev-php-56/windows-2012/scripts/prereqs.bat"
         },
         {
             "type": "powershell",
-            "script": "C:\\Windows\\Temp\\scripts\\sysprep.ps1"
+            "script": "hashicorp/solodev-php-56/windows-2012/scripts/sysprep.ps1"
         }
     ]
 }
