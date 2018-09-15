@@ -41,7 +41,7 @@
         {
             "type": "file",
             "source": "hashicorp/solodev-php-56/windows-2012/scripts",
-            "destination": "C:\\Windows\\Temp\\"
+            "destination": "C:\\Windows\\Temp"
         },
         {
             "type": "file",
