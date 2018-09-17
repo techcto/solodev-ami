@@ -26,7 +26,7 @@ echo "mkdir -p /var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo "PWD=/var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo 'DBFILE=\$PWD/databases.txt' >> /root/dumpmysql.sh
 echo 'rm -f \$DBFILE' >> /root/dumpmysql.sh
-echo "/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" \> \\$DBFILE" >> /root/dumpmysql.sh
+echo "/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" > \$DBFILE" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p\$EC2_INSTANCE_ID \$i > \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
 echo "# Compress Backups" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do gzip -f \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
@@ -58,14 +58,14 @@ echo "Install Solodev"
 php /var/www/Solodev/core/update.php admin \$EC2_INSTANCE_ID >> /root/phpinstall.log
 chmod -Rf 2770 /var/www/Solodev/clients
 chown -Rf apache.apache /var/www/Solodev/clients
-rm -f /root/init-solodev.sh
+#rm -f /root/init-solodev.sh
 EOF
 
 chmod 700 /root/init-solodev.sh
 
 #Install Cloud Init script
-tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
-#install-config
-runcmd:
- - /root/init-solodev.sh
-EOF
+# tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
+# #install-config
+# runcmd:
+#  - /root/init-solodev.sh
+# EOF
