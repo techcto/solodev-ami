@@ -44,17 +44,17 @@
             "destination": "C:\\Windows\\Temp"
         },
         {
-            "type": "file",
-            "source": "/tmp/Solodev",
-            "destination": "C:\\inetpub\\Solodev"
-        },
-        {
             "type": "powershell",
             "script": "hashicorp/solodev-php-56/windows-2012/scripts/chocolatey.ps1"
         },
         {
             "type": "windows-shell",
             "script": "hashicorp/solodev-php-56/windows-2012/scripts/prereqs.bat"
+        },
+        {
+            "type": "file",
+            "source": "/tmp/Solodev",
+            "destination": "C:\\inetpub"
         },
         {
             "type": "powershell",
