@@ -24,9 +24,9 @@ echo "Create mysql backup script"
 echo '#!/bin/bash' > /root/dumpmysql.sh
 echo "mkdir -p /var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo "PWD=/var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
-echo "DBFILE=\$PWD/databases.txt" >> /root/dumpmysql.sh
-echo "rm -f \\$DBFILE" >> /root/dumpmysql.sh
-echo "/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" > \\$DBFILE" >> /root/dumpmysql.sh
+echo 'DBFILE=\$PWD/databases.txt' >> /root/dumpmysql.sh
+echo 'rm -f \$DBFILE' >> /root/dumpmysql.sh
+echo "/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" \> \\$DBFILE" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p\$EC2_INSTANCE_ID \$i > \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
 echo "# Compress Backups" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do gzip -f \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
@@ -36,10 +36,10 @@ echo "Add Mysql dump to Crontab"
 (crontab -l 2>/dev/null; echo "30 13 * * * /root/dumpmysql.sh") | crontab -
 
 echo "Configure Mongo"
-echo 'use solodev_views;' > /tmp/mongouser.js
+echo 'use solodev_views;' > /root/mongouser.js
 echo 'db.createUser({"user": "solodevsql", "pwd": "\$EC2_INSTANCE_ID", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /root/mongouser.js
-mongo < /tmp/mongouser.js
-rm -Rf /tmp/mongouser.js
+mongo < /root/mongouser.js
+rm -Rf /root/mongouser.js
 
 echo "Create default Solodev folders"	
 mkdir -p /var/www/Solodev/clients/solodev/Vhosts		
