@@ -28,7 +28,7 @@
                 "name": "Windows_Server-2012-R2_RTM-English-64Bit-Base-*",
                 "root-device-type": "ebs"
             },
-            "owners": [],
+            "owners": ["amazon"],
             "most_recent": true
         }
     }],
@@ -36,7 +36,7 @@
         {
             "type": "file",
             "source": "hashicorp/solodev-php-56/windows-2012/scripts/SolodevSetup.cmd",
-            "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\scripts"
+            "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\scripts\\SolodevSetup.cmd"
         },
         {
             "type": "file",
