@@ -58,14 +58,14 @@ echo "Install Solodev"
 php /var/www/Solodev/core/update.php admin \$EC2_INSTANCE_ID >> /root/phpinstall.log
 chmod -Rf 2770 /var/www/Solodev/clients
 chown -Rf apache.apache /var/www/Solodev/clients
-# rm -f /root/init-solodev.sh
+rm -f /root/init-solodev.sh
 EOF
 
 chmod 700 /root/init-solodev.sh
 
-# #Install Cloud Init script
-# tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
-# #install-config
-# runcmd:
-#  - /root/init-solodev.sh
-# EOF
+#Install Cloud Init script
+tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
+#install-config
+runcmd:
+ - /root/init-solodev.sh
+EOF
