@@ -12,7 +12,6 @@
         "type": "amazon-ebs",
         "region": "{{user `aws_region`}}",
         "profile": "{{ user `aws_profile`}}",
-        "iam_instance_profile": "{{user `iam_role`}}",
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
         "ami_name": "{{user `aws_ami_name`}}",
