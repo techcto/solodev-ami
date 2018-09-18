@@ -5,7 +5,7 @@
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}",
         "aws_ami_name": "solodev-single-windows-2012-v{{env `SOLODEV_RELEASE`}}",
-        "iam_role": "codebuild-solodev-ami-builder-service-role"
+        "iam_role": "PackerWindowsRole"
     },
 
     "builders": [{
