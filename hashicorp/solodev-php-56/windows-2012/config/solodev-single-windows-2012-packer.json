@@ -5,7 +5,7 @@
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}",
         "aws_ami_name": "solodev-single-windows-2012-v{{env `SOLODEV_RELEASE`}}",
-        "iam_role": "packer-s3-access"
+        "iam_role": "PackerWindowsRole"
     },
 
     "builders": [{
@@ -18,6 +18,7 @@
         "ami_description": "Solodev CMS - Single Server Windows Edition",
         "associate_public_ip_address": "true",
         "ami_users": ["{{user `owner_account_id`}}", "{{user `guest1_account_id`}}", "{{user `guest2_account_id`}}"],
+        "iam_instance_profile": "{{user `iam_role`}}",
         "user_data_file": "hashicorp/solodev-php-56/windows-2012/scripts/SetUpWinRM.ps1",
         "communicator": "winrm",
         "winrm_username": "Administrator",
