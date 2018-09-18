@@ -15,7 +15,7 @@ echo "Allow from all" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 echo "<VirtualHost *:80>" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /core /var/www/Solodev/core/html_core" >> /etc/httpd/conf.d/solodev.conf
-echo "Alias /CK /inetpub/Solodev/public/www/node_modules/ckeditor-ful" >> /etc/httpd/conf.d/solodev.conf
+echo "Alias /CK /inetpub/Solodev/public/www/node_modules/ckeditor-full" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /api /var/www/Solodev/core/api" >> /etc/httpd/conf.d/solodev.conf
 echo "ErrorDocument 404 /" >> /etc/httpd/conf.d/solodev.conf
 echo "ErrorDocument 401 /" >> /etc/httpd/conf.d/solodev.conf
