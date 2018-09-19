@@ -4,7 +4,8 @@
         "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}",
-        "aws_ami_name": "solodev-single-v{{env `SOLODEV_RELEASE`}}"
+        "aws_ami_name": "solodev-single-windows-2016-v{{env `SOLODEV_RELEASE`}}",
+        "iam_role": "PackerWindows"
     },
 
     "builders": [{
@@ -17,7 +18,8 @@
         "ami_description": "Solodev CMS - Single Server Windows Edition",
         "associate_public_ip_address": "true",
         "ami_users": ["{{user `owner_account_id`}}", "{{user `guest1_account_id`}}", "{{user `guest2_account_id`}}"],
-        "user_data_file": "./scripts/SetUpWinRM.ps1",
+        "iam_instance_profile": "{{user `iam_role`}}",
+        "user_data_file": "hashicorp/solodev-php-56/windows-2016/scripts/SetUpWinRM.ps1",
         "communicator": "winrm",
         "winrm_username": "Administrator",
         "winrm_use_ssl": true,
@@ -25,30 +27,30 @@
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "Windows_Server-2012-R2_RTM-English-64Bit-Base-*",
+                "name": "Windows_Server-2016-R2_RTM-English-64Bit-Base-*",
                 "root-device-type": "ebs"
             },
-            "owners": [],
+            "owners": ["amazon"],
             "most_recent": true
         }
     }],
     "provisioners": [
         {
             "type": "file",
-            "source": "/tmp/Solodev",
-            "destination": "C:\\inetpub\\Solodev"
+            "source": "hashicorp/solodev-php-56/windows-2016/scripts/SolodevSetup.cmd",
+            "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\scripts\\SolodevSetup.cmd"
         },
         {
             "type": "windows-shell",
-            "inline": [
-                "./scripts/prereqs.bat",
-                "./scripts/SolodevSetup.cmd"
-            ]
+            "script": "hashicorp/solodev-php-56/windows-2016/scripts/prereqs.bat"
         },
         {
-            "type": "file",
-            "source": "./scripts/SolodevSetup.cmd",
-            "destination": "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SolodevSetup.cmd"
+            "type": "powershell",
+            "script": "hashicorp/solodev-php-56/windows-2016/scripts/install-solodev.ps1"
+        },
+        {
+            "type": "powershell",
+            "script": "hashicorp/solodev-php-56/windows-2016/scripts/sysprep.ps1"
         },
         {
             "type": "powershell",
