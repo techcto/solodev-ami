@@ -9,6 +9,12 @@ foreach ($element in $xmlElement.Property)
         $element.Value="Yes"
     }
 }
+
+$xml_switches = $xml.SelectSingleNode("//Switches[1]")
+foreach ($switch in $xml_switches) {
+    $switch.'#text' = "/quit /oobe /generalize"
+}
+
 $xml.Save($EC2SettingsFile)
 
 
@@ -46,3 +52,6 @@ $child.AppendChild($Path);
 $xmlElementToAddTo.AppendChild($child)
 
 $xml.Save($sysprepFile)
+
+#initialize sysprep for aws win2012
+$p = Start-Process "C:\Program Files\Amazon\Ec2ConfigService\Ec2Config.exe" -ArgumentList "-sysprep" -Wait

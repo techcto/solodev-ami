@@ -41,10 +41,6 @@
             "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\scripts\\SolodevSetup.cmd"
         },
         {
-            "type": "powershell",
-            "script": "hashicorp/solodev-php-56/windows-2012/scripts/chocolatey.ps1"
-        },
-        {
             "type": "windows-shell",
             "script": "hashicorp/solodev-php-56/windows-2012/scripts/prereqs.bat"
         },
