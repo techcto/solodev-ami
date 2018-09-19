@@ -47,10 +47,10 @@ cd C:\inetpub\Solodev\clients\solodev\
 
 
 C:\Windows\System32\inetsrv\appcmd.exe delete site "Default Web Site"
-C:\Windows\System32\inetsrv\appcmd.exe add site /name:"Solodev" /id:1 /physicalPath:"C:\inetpub\Solodev\core\solodevX\www"
+C:\Windows\System32\inetsrv\appcmd.exe add site /name:"Solodev" /id:1 /physicalPath:"C:\inetpub\Solodev\public\www"
 C:\Windows\System32\inetsrv\appcmd.exe set site /site.name:Solodev /+bindings.[protocol='http',bindingInformation='*:80:']
 C:\Windows\System32\inetsrv\appcmd.exe add vdir /app.name:"Solodev/" / /path:"/api" /physicalPath:"C:\inetpub\Solodev\core\api"
-C:\Windows\System32\inetsrv\appcmd.exe add vdir /app.name:"Solodev/" / /path:"/CK" /physicalPath:"C:\inetpub\Solodev\core\CK"
+C:\Windows\System32\inetsrv\appcmd.exe add vdir /app.name:"Solodev/" / /path:"/CK" /physicalPath:"C:\inetpub\Solodev\public\www\node_modules\ckeditor-full"
 C:\Windows\System32\inetsrv\appcmd.exe add vdir /app.name:"Solodev/" / /path:"/core" /physicalPath:"C:\inetpub\Solodev\core\html_core"
 
 
@@ -81,7 +81,7 @@ echo 127.0.0.1  demo.com >> C:\Windows\System32\drivers\etc\hosts
 iisreset /start
 
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\IIS Manager.lnk" >> CreateShortcut.vbs
+echo sLinkFile = "C:\Users\Administrator\Desktop\IIS Manager.lnk" >> CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> CreateShortcut.vbs
 echo oLink.TargetPath = "%windir%\system32\inetsrv\InetMgr.exe" >> CreateShortcut.vbs
 echo oLink.Save >> CreateShortcut.vbs
@@ -89,34 +89,33 @@ cscript CreateShortcut.vbs
 del CreateShortcut.vbs
 
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\Solodev Admin.lnk" >> CreateShortcut.vbs
+echo sLinkFile = "C:\Users\Administrator\Desktop\Solodev Admin.lnk" >> CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> CreateShortcut.vbs
 echo oLink.TargetPath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" >> CreateShortcut.vbs
 echo oLink.Arguments = "localhost --profile-directory=Default " >> CreateShortcut.vbs
-echo oLink.IconLocation = "C:\inetpub\Solodev\core\solodevX\www\assets\images\solodev.ico, 0" >> CreateShortcut.vbs
+echo oLink.IconLocation = "C:\inetpub\Solodev\public\www\assets\images\solodev.ico, 0" >> CreateShortcut.vbs
 echo oLink.Save >> CreateShortcut.vbs
 cscript CreateShortcut.vbs
 del CreateShortcut.vbs
 
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\Demo Site.lnk" >> CreateShortcut.vbs
+echo sLinkFile = "C:\Users\Administrator\Desktop\Demo Site.lnk" >> CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> CreateShortcut.vbs
 echo oLink.TargetPath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" >> CreateShortcut.vbs
 echo oLink.Arguments = "www.demo.com  --profile-directory=Default " >> CreateShortcut.vbs
-echo oLink.IconLocation = "C:\inetpub\Solodev\core\solodevX\www\assets\images\webcorpco.ico, 0" >> CreateShortcut.vbs
+echo oLink.IconLocation = "C:\inetpub\Solodev\public\www\assets\images\webcorpco.ico, 0" >> CreateShortcut.vbs
 echo oLink.Save >> CreateShortcut.vbs
 cscript CreateShortcut.vbs
 del CreateShortcut.vbs
 
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\Solodev Quick Start Guide.lnk" >> CreateShortcut.vbs
+echo sLinkFile = "C:\Users\Administrator\Desktop\Solodev Quick Start Guide.lnk" >> CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> CreateShortcut.vbs
 echo oLink.TargetPath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" >> CreateShortcut.vbs
 echo oLink.Arguments = "solodev.zendesk.com/hc/en-us/sections/206208667-Quick-Start-Guide --profile-directory=Default " >> CreateShortcut.vbs
 echo oLink.Save >> CreateShortcut.vbs
 cscript CreateShortcut.vbs
 del CreateShortcut.vbs
-
 
 del "C:\Program Files\Amazon\Ec2ConfigService\Scripts\SolodevSetup.cmd"
 
