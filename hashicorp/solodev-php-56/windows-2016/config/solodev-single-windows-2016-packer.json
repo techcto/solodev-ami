@@ -38,7 +38,7 @@
         {
             "type": "file",
             "source": "hashicorp/solodev-php-56/windows-2016/scripts/SolodevSetup.cmd",
-            "destination": "C:\\Program Files\\Amazon\\Ec2ConfigService\\scripts\\SolodevSetup.cmd"
+            "destination": "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SolodevSetup.cmd"
         },
         {
             "type": "windows-shell",
@@ -55,9 +55,8 @@
         {
             "type": "powershell",
             "inline": [
-                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SolodevSetup.ps1 -Schedule",
                 "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\InitializeInstance.ps1 -Schedule",
-                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SysprepInstance.ps1 -NoShutdown"
+                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SysprepInstance.ps1"
             ]
         }
     ]

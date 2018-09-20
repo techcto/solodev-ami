@@ -10,7 +10,7 @@ $child.Attributes.Append($attrib)
 $Order = $xml.CreateElement("Order", $xml.unattend.NamespaceURI)
 $Order.InnerXml='10'
 $Path = $xml.CreateElement("Path", $xml.unattend.NamespaceURI)
-$Path.InnerXml = 'C:\Program Files\Amazon\Ec2ConfigService\Scripts\SolodevSetup.cmd';
+$Path.InnerXml = 'C:\ProgramData\Amazon\EC2-Windows\Launch\Scripts\SolodevSetup.cmd';
 $child.AppendChild($Order);
 $child.AppendChild($Path);
 
