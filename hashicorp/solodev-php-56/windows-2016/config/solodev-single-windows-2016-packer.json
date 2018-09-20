@@ -27,7 +27,7 @@
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "Windows_Server-2016-R2_RTM-English-64Bit-Base-*",
+                "name": "Windows_Server-2016-English-Full-Base-*",
                 "root-device-type": "ebs"
             },
             "owners": ["amazon"],
