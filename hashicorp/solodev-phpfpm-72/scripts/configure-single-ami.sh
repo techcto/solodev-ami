@@ -15,7 +15,7 @@ MOUNT="/var/www/Solodev/clients/solodev"
 
 echo "Create Solodev database and user"
 echo "CREATE DATABASE solodev;" >> /tmp/setup.mysql
-echo "GRANT ALL ON solodev.* TO solodevsql@127.0.0.1 IDENTIFIED BY '\$EC2_INSTANCE_ID';" >> /tmp/setup.mysql
+echo "GRANT ALL ON solodev.* TO solodevsql@127.0.0.1 IDENTIFIED BY \"\$EC2_INSTANCE_ID\"";" >> /tmp/setup.mysql
 
 echo "Set mysql user permissions"
 mysqladmin -u root password \$EC2_INSTANCE_ID
@@ -23,7 +23,7 @@ mysql -u root --password=\$EC2_INSTANCE_ID < /tmp/setup.mysql
 
 echo "Configure Mongo"
 echo 'use solodev_views;' > /root/mongouser.js
-echo 'db.createUser({"user": "solodevsql", "pwd": "'"$EC2_INSTANCE_ID"'", "roles": [ { role: "readWrite", db: "solodev_views" } ] })' >> /root/mongouser.js
+echo "db.createUser({\"user\": \"solodevsql\", \"pwd\": \"\$EC2_INSTANCE_ID\", \"roles\": [ { role: \"readWrite\", db: \"solodev_views\" } ] })" >> /root/mongouser.js
 mongo < /root/mongouser.js
 rm -Rf /root/mongouser.js
 
@@ -55,8 +55,8 @@ echo "mkdir -p /var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo "PWD=/var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo 'DBFILE=\$PWD/databases.txt' >> /root/dumpmysql.sh
 echo 'rm -f \$DBFILE' >> /root/dumpmysql.sh
-echo '/usr/bin/mysql -u root -p'"$EC2_INSTANCE_ID"' mysql -Ns -e "show databases" > \$DBFILE' >> /root/dumpmysql.sh
-echo 'for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p'"$EC2_INSTANCE_ID"' \$i > \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
+echo "/usr/bin/mysql -u root -p\$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" > \$DBFILE" >> /root/dumpmysql.sh
+echo "for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p\$EC2_INSTANCE_ID \$i > \$PWD/\$i.sql ; done" >> /root/dumpmysql.sh
 echo "# Compress Backups" >> /root/dumpmysql.sh
 echo 'for i in \`cat \$DBFILE\` ; do gzip -f \$PWD/\$i.sql ; done' >> /root/dumpmysql.sh
 chmod 700 /root/dumpmysql.sh
