@@ -23,7 +23,7 @@ mysql -u root --password=\$EC2_INSTANCE_ID < /tmp/setup.mysql
 
 echo "Configure Mongo"
 echo 'use solodev_views;' > /root/mongouser.js
-echo "db.createUser({\"user\": \"solodevsql\", \"pwd\": \"\$EC2_INSTANCE_ID\", \"roles\": [ { role: \"readWrite\", db: \"solodev_views\" } ] })" >> /root/mongouser.js
+echo "db.createUser\({\"user\": \"solodevsql\", \"pwd\": \"\$EC2_INSTANCE_ID\", \"roles\": [ { role: \"readWrite\", db: \"solodev_views\" } ] }\)" >> /root/mongouser.js
 mongo < /root/mongouser.js
 rm -Rf /root/mongouser.js
 
