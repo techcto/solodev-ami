@@ -16,7 +16,6 @@
         "ami_name": "{{user `aws_ami_name`}}",
         "ami_description": "Solodev CMS - Single Server Edition",
         "associate_public_ip_address": "true",
-        "ami_users": ["{{user `owner_account_id`}}", "{{user `guest1_account_id`}}", "{{user `guest2_account_id`}}"],
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
