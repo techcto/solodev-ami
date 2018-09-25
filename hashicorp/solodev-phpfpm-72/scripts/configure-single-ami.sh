@@ -23,7 +23,7 @@ mysql -u root --password=$EC2_INSTANCE_ID < /tmp/setup.mysql
 
 echo "Configure Mongo"
 echo 'use solodev_views;' > /root/mongouser.js
-echo "db.createUser\({\"user\": \"solodevsql\", \"pwd\": \"$EC2_INSTANCE_ID\", \"roles\": [ { role: \"readWrite\", db: \"solodev_views\" } ] }\)" >> /root/mongouser.js
+echo "db.createUser({\"user\": \"solodevsql\", \"pwd\": \"$EC2_INSTANCE_ID\", \"roles\": [ { role: \"readWrite\", db: \"solodev_views\" } ] })" >> /root/mongouser.js
 mongo < /root/mongouser.js
 rm -Rf /root/mongouser.js
 
@@ -55,10 +55,10 @@ echo "mkdir -p /var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo "PWD=/var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo 'DBFILE=$PWD/databases.txt' >> /root/dumpmysql.sh
 echo 'rm -f $DBFILE' >> /root/dumpmysql.sh
-echo "/usr/bin/mysql -u root -p$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" > $DBFILE" >> /root/dumpmysql.sh
-echo 'for i in \`cat $DBFILE\` ; do mysqldump --opt --single-transaction -u root -p$EC2_INSTANCE_ID $i > $PWD/$i.sql ; done' >> /root/dumpmysql.sh
+echo "/usr/bin/mysql -u root -p$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" > \$DBFILE" >> /root/dumpmysql.sh
+echo "for i in \`cat \$DBFILE\` ; do mysqldump --opt --single-transaction -u root -p$EC2_INSTANCE_ID \$i > \$PWD/\$i.sql ; done" >> /root/dumpmysql.sh
 echo "# Compress Backups" >> /root/dumpmysql.sh
-echo 'for i in \`cat $DBFILE\` ; do gzip -f $PWD/$i.sql ; done' >> /root/dumpmysql.sh
+echo 'for i in `cat $DBFILE` ; do gzip -f $PWD/$i.sql ; done' >> /root/dumpmysql.sh
 chmod 700 /root/dumpmysql.sh
 
 echo "Install restore scripts"
@@ -92,7 +92,7 @@ echo "Add backup routine to Crontab"
 (crontab -l 2>/dev/null; echo "30 13 * * * /root/backup.sh") | crontab -
          
 echo "Generate restore script"
-echo "#!/bin/bash" >> /root/restore.sh
+echo "#!/bin/bash" > /root/restore.sh
 echo "mv $MOUNT/Client_Settings.xml $MOUNT/Client_Settings.xml.bak" >> /root/restore.sh
 echo "sudo alternatives --install /usr/bin/python  python /usr/bin/python2.6 1" >> /root/restore.sh
 echo "sudo alternatives --set python /usr/bin/python2.6" >> /root/restore.sh
