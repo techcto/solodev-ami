@@ -82,7 +82,7 @@ echo 'DUPL_PARAMS="$DUPL_PARAMS --volsize $VOLSIZE"' >> /etc/duply/backup/conf
 echo 'DUPL_PARAMS="$DUPL_PARAMS --full-if-older-than $MAX_FULLBKP_AGE"' >> /etc/duply/backup/conf
 
 echo "/root/dumpmysql.sh >/dev/null 2>&1" > /etc/duply/backup/pre
-echo "mongodump --out \$MOUNT/mongodumps >/dev/null 2>&1" >> /etc/duply/backup/pre
+echo 'mongodump --out '"$MOUNT"'/mongodumps > /dev/null 2>&1' >> /etc/duply/backup/pre
 
 echo "/root/dumpmysql.sh" > /root/backup.sh
 echo "duply backup backup" >> /root/backup.sh
