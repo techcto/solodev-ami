@@ -28,10 +28,10 @@ phases:
       # - ./packer validate hashicorp/solodev-php-56/windows-2016/config/solodev-single-windows-2016-packer.json
       # - echo "Building HashiCorp Packer template - solodev-single-windows-2016-packer.json"
       # - ./packer build hashicorp/solodev-php-56/windows-2016/config/solodev-single-windows-2016-packer.json
-      - echo "Validating - solodev-cluster-aws1-packer.json"
-      - ./packer validate hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
-      - echo "Building HashiCorp Packer template - solodev-cluster-aws1-packer.json"
-      - ./packer build hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
+      # - echo "Validating - solodev-cluster-aws1-packer.json"
+      # - ./packer validate hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
+      # - echo "Building HashiCorp Packer template - solodev-cluster-aws1-packer.json"
+      # - ./packer build hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
       # - echo "Validating - solodev-cluster-aws2-packer.json"
       # - ./packer validate hashicorp/solodev-phpfpm-72/config/solodev-cluster-aws2-packer.json
       # - echo "Building HashiCorp Packer template - solodev-cluster-aws2-packer.json"
