@@ -65,6 +65,29 @@ echo "Install restore scripts"
 yum install -y duplicity duply python-boto mysql --enablerepo=epel
 curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
 
+echo "Write sample bucket permissions"
+
+echo <<< EOL
+#Copy the below into S3->Bucket->Permissions->Buckey Policy
+#Replace ${AWS-IAM-USER-ARN} and ${AWS-BUCKET-NAME}
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Backup Permssions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "${AWS-IAM-USER-ARN}"
+                ]
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::${AWS-BUCKET-NAME}/backups/*"
+        }
+    ]
+}
+EOL >> /root/s3-backup-bucket.policy;
+
 echo "Init Duply backup config"
 duply backup create
 perl -pi -e 's/GPG_KEY/#GPG_KEY/g' /etc/duply/backup/conf
