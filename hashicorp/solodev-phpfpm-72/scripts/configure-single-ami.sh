@@ -83,6 +83,20 @@ echo <<< EOL
             },
             "Action": "s3:GetObject",
             "Resource": "arn:aws:s3:::${AWS-BUCKET-NAME}/backups/*"
+        },
+        {
+            "Sid": "Backup Permssions 2",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "${AWS-IAM-USER-ARN}"
+                ]
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::${AWS-BUCKET-NAME}"
         }
     ]
 }
@@ -94,8 +108,8 @@ perl -pi -e 's/GPG_KEY/#GPG_KEY/g' /etc/duply/backup/conf
 perl -pi -e 's/GPG_PW/#GPG_PW/g' /etc/duply/backup/conf
 echo "GPG_PW=$EC2_INSTANCE_ID" >> /etc/duply/backup/conf
 echo "TARGET='s3+http://BACKUP-BUCKET/backups'" >> /etc/duply/backup/conf
-echo "TARGET_USER='IAM_ACCESS_KEY'" >> /etc/duply/backup/conf
-echo "TARGET_PASS='IAM_SECRET_KEY'" >> /etc/duply/backup/conf
+echo "export AWS_ACCESS_KEY_ID='IAM_ACCESS_KEY'" >> /etc/duply/backup/conf
+echo "export AWS_SECRET_ACCESS_KEY='IAM_SECRET_KEY'" >> /etc/duply/backup/conf
 echo "SOURCE=$MOUNT" >> /etc/duply/backup/conf
 echo "MAX_AGE='1W'" >> /etc/duply/backup/conf
 echo "MAX_FULL_BACKUPS='2'" >> /etc/duply/backup/conf
@@ -105,7 +119,7 @@ echo 'DUPL_PARAMS="$DUPL_PARAMS --volsize $VOLSIZE"' >> /etc/duply/backup/conf
 echo 'DUPL_PARAMS="$DUPL_PARAMS --full-if-older-than $MAX_FULLBKP_AGE"' >> /etc/duply/backup/conf
 
 echo "/root/dumpmysql.sh >/dev/null 2>&1" > /etc/duply/backup/pre
-echo 'mongodump --out $MOUNT/mongodumps > /dev/null 2>&1' >> /etc/duply/backup/pre
+echo "mongodump --out $MOUNT/mongodumps > /dev/null 2>&1" >> /etc/duply/backup/pre
 
 echo "/root/dumpmysql.sh" > /root/backup.sh
 echo "duply backup backup" >> /root/backup.sh
@@ -117,17 +131,19 @@ echo "Add backup routine to Crontab"
 echo "Generate restore script"
 echo "#!/bin/bash" > /root/restore.sh
 echo "mv $MOUNT/Client_Settings.xml $MOUNT/Client_Settings.xml.bak" >> /root/restore.sh
-echo "sudo alternatives --install /usr/bin/python  python /usr/bin/python2.6 1" >> /root/restore.sh
-echo "sudo alternatives --set python /usr/bin/python2.6" >> /root/restore.sh
+echo "#sudo alternatives --install /usr/bin/python  python /usr/bin/python2.6 1" >> /root/restore.sh
+echo "#sudo alternatives --set python /usr/bin/python2.6" >> /root/restore.sh
 echo "export PASSPHRASE=$EC2_INSTANCE_ID" >> /root/restore.sh
-echo "duplicity --force -v8 restore s3+http://RESTORE-BUCKET/backups/ $MOUNT" >> /root/restore.sh
+echo "export AWS_ACCESS_KEY_ID='IAM_ACCESS_KEY'" >> /root/restore.sh
+echo "export AWS_SECRET_ACCESS_KEY='IAM_SECRET_KEY'" >> /root/restore.sh
+echo "duplicity --force -v8 restore s3://s3.amazon.com/RESTORE-BUCKET/backups/ $MOUNT" >> /root/restore.sh
 echo "chmod -Rf 2770 $MOUNT" >> /root/restore.sh
 echo "chown -Rf apache.apache $MOUNT" >> /root/restore.sh
 echo "gunzip < $MOUNT/dbdumps/solodev.sql.gz | mysql -u root -p$EC2_INSTANCE_ID solodev" >> /root/restore.sh
 echo "mongorestore $MOUNT/mongodumps" >> /root/restore.sh
 echo "rm -f $MOUNT/Client_Settings.xml" >> /root/restore.sh
 echo "mv $MOUNT/Client_Settings.xml.bak $MOUNT/Client_Settings.xml" >> /root/restore.sh
-echo "sudo alternatives --remove python /usr/bin/python2.6" >> /root/restore.sh
+echo "#sudo alternatives --remove python /usr/bin/python2.6" >> /root/restore.sh
 chmod 700 /root/restore.sh
 
 #rm -f /root/init-solodev.sh
