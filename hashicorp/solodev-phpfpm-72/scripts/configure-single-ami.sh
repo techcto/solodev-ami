@@ -67,7 +67,7 @@ curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./j
 
 echo "Write sample bucket permissions"
 
-echo <<< EOL
+cat <<EOT >> /root/s3-backup-bucket.policy
 #Copy the below into S3->Bucket->Permissions->Buckey Policy
 #Replace ${AWS-IAM-USER-ARN} and ${AWS-BUCKET-NAME}
 {
@@ -100,7 +100,7 @@ echo <<< EOL
         }
     ]
 }
-EOL >> /root/s3-backup-bucket.policy;
+EOT
 
 echo "Init Duply backup config"
 duply backup create
@@ -136,7 +136,7 @@ echo "#sudo alternatives --set python /usr/bin/python2.6" >> /root/restore.sh
 echo "export PASSPHRASE=$EC2_INSTANCE_ID" >> /root/restore.sh
 echo "export AWS_ACCESS_KEY_ID='IAM_ACCESS_KEY'" >> /root/restore.sh
 echo "export AWS_SECRET_ACCESS_KEY='IAM_SECRET_KEY'" >> /root/restore.sh
-echo "duplicity --force -v8 restore s3://s3.amazon.com/RESTORE-BUCKET/backups/ $MOUNT" >> /root/restore.sh
+echo "duplicity --force -v8 restore s3+http://RESTORE-BUCKET/backups $MOUNT" >> /root/restore.sh
 echo "chmod -Rf 2770 $MOUNT" >> /root/restore.sh
 echo "chown -Rf apache.apache $MOUNT" >> /root/restore.sh
 echo "gunzip < $MOUNT/dbdumps/solodev.sql.gz | mysql -u root -p$EC2_INSTANCE_ID solodev" >> /root/restore.sh
