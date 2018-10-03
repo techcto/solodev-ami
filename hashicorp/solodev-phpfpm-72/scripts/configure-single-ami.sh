@@ -151,8 +151,8 @@ EOF
 chmod 700 /root/init-solodev.sh
 
 Install Cloud Init script
- tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
- #install-config
- runcmd:
-  - /root/init-solodev.sh
- EOF
+tee /etc/cloud/cloud.cfg.d/install.cfg <<EOF
+#install-config
+runcmd:
+- /root/init-solodev.sh
+EOF
