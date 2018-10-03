@@ -81,8 +81,11 @@ cat <<EOT >> /root/s3-backup-bucket.policy
                     "${AWS-IAM-USER-ARN}"
                 ]
             },
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::${AWS-BUCKET-NAME}/backups/*"
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::${AWS-BUCKET-NAME}/*"
         },
         {
             "Sid": "Backup Permssions 2",
@@ -92,10 +95,7 @@ cat <<EOT >> /root/s3-backup-bucket.policy
                     "${AWS-IAM-USER-ARN}"
                 ]
             },
-            "Action": [
-                "s3:PutObject",
-                "s3:GetObject"
-            ],
+            "Action": "s3:ListBucket",
             "Resource": "arn:aws:s3:::${AWS-BUCKET-NAME}"
         }
     ]
