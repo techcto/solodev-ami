@@ -143,7 +143,7 @@ echo "rm -f $MOUNT/Client_Settings.xml" >> /root/restore.sh
 echo "mv $MOUNT/Client_Settings.xml.bak $MOUNT/Client_Settings.xml" >> /root/restore.sh
 chmod 700 /root/restore.sh
 
-#rm -f /root/init-solodev.sh
+rm -f /root/init-solodev.sh
 EOF
 chmod 700 /root/init-solodev.sh
 
