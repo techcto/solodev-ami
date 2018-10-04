@@ -20,7 +20,7 @@ phases:
       - sudo hashicorp/solodev-phpfpm-72/scripts/install-solodev.sh
   build:
     commands:
-      ## - echo "Validating - solodev-single-windows-2012-packer.json"
+      # - echo "Validating - solodev-single-windows-2012-packer.json"
       # - ./packer validate hashicorp/solodev-php-56/windows-2012/config/solodev-single-windows-2012-packer.json
       # - echo "Building HashiCorp Packer template - solodev-single-windows-2012-packer.json"
       # - ./packer build hashicorp/solodev-php-56/windows-2012/config/solodev-single-windows-2012-packer.json
