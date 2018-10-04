@@ -17,17 +17,7 @@
         "ami_description": "Solodev CMS - Enterprise Cluster Edition",
         "ami_groups": ["all"],
         "associate_public_ip_address": "true",
-        "source_ami_filter": {
-            "filters": {
-                "virtualization-type": "hvm",
-                "name": "amzn-ami-hvm-2018.03.0.20180811-x86_64-ebs",
-                "root-device-type": "ebs"
-            },
-
-
-            "owners": [],
-            "most_recent": true
-        },
+        "source_ami": "ami-0ff8a91507f77f867",
         "launch_block_device_mappings": [
             {
                 "device_name": "/dev/xvda",
