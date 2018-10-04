@@ -20,7 +20,7 @@
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "amzn-ami*-ebs",
+                "name": "amzn-ami-hvm-2018.03.0.20180811-x86_64-ebs",
                 "root-device-type": "ebs"
             },
 
