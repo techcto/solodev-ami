@@ -15,7 +15,7 @@ yum-config-manager --enable remi-php72
 yum --enablerepo=epel --disablerepo=amzn-main -y install libwebp
 
 #Update all libs
-# yum update -y
+yum update -y
 
 #Clear cache dir
 rm -Rf /var/cache/yum/base/packages
