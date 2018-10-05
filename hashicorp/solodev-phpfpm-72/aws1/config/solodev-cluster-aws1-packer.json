@@ -16,7 +16,6 @@
         "ami_name": "{{user `aws_ami_name`}}",
         "ami_description": "Solodev CMS - Enterprise Cluster Edition",
         "ami_groups": ["all"],
-        "ami_users": ["{{user `owner_account_id`}}", "{{user `guest1_account_id`}}", "{{user `guest2_account_id`}}"],
         "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {
