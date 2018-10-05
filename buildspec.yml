@@ -22,11 +22,12 @@ phases:
     commands:
       - FORCE_BUILDS=true
       - TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-php-56/windows-2012 -printf "%Ts\n" | sort | tail -1)))
-      - if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then \n
-        echo "Validating - solodev-single-windows-2012-packer.json" \n
-        ./packer validate hashicorp/solodev-php-56/windows-2012/config/solodev-single-windows-2012-packer.json \n
-        echo "Building HashiCorp Packer template - solodev-single-windows-2012-packer.json" \n
-        ./packer build hashicorp/solodev-php-56/windows-2012/config/solodev-single-windows-2012-packer.json \n
+      - >
+        if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
+        echo "Validating - solodev-single-windows-2012-packer.json"
+        ./packer validate hashicorp/solodev-php-56/windows-2012/config/solodev-single-windows-2012-packer.json
+        echo "Building HashiCorp Packer template - solodev-single-windows-2012-packer.json"
+        ./packer build hashicorp/solodev-php-56/windows-2012/config/solodev-single-windows-2012-packer.json
         fi
       # - echo "Validating - solodev-single-windows-2016-packer.json"
       # - ./packer validate hashicorp/solodev-php-56/windows-2016/config/solodev-single-windows-2016-packer.json
