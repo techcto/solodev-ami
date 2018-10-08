@@ -36,7 +36,7 @@ echo "security.limit_extensions = .php .stml" >> /etc/opt/remi/php72/php-fpm.d/w
 echo "listen = /run/www.sock" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "listen.owner = apache" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "listen.mode = 0660" >> /etc/opt/remi/php72/php-fpm.d/www.conf
-echo "chdir = /var/www/Solodev" >> /etc/opt/remi/php72/php-fpm.d/www.conf
+echo "chdir = /var/www" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 
 #Install Composer
 curl -sS https://getcomposer.org/installer | php
