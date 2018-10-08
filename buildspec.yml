@@ -23,6 +23,7 @@ phases:
       - FORCE_BUILDS=false
       - |
         TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/aws1 -printf "%Ts\n" | sort | tail -1)))
+        echo $TIME_DIFF_LATEST_FILE
         if [ "$FORCE_BUILDS" = true ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
         echo "Validating - solodev-cluster-aws1-packer.json"
         ./packer validate hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
