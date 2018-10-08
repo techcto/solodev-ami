@@ -20,7 +20,7 @@ phases:
       - sudo hashicorp/init-scripts/install-solodev.sh
   build:
     commands:
-      - FORCE_BUILDS=true
+      - FORCE_BUILDS=false
       - |
         TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/aws1 -printf "%Ts\n" | sort | tail -1)))
         if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
