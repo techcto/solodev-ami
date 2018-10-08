@@ -15,7 +15,7 @@ choco install vcredist2012 -y
 choco install vcredist2013 -y
 choco install mysql -y --initialize-insecure
 choco install php -version 5.6.38 -y --forcex86 --allow-empty-checksums --params '"/InstallDir:c:\tools\php"'
-choco install mongodb -y
+choco install mongodb -version 3.4.7 -y
 choco install awscli -y
 choco install nodejs-lts -y
 choco install googlechrome -y
