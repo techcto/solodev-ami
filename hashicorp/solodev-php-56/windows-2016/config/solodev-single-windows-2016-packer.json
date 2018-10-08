@@ -40,6 +40,11 @@
             "destination": "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SolodevSetup.cmd"
         },
         {
+            "type": "file",
+            "source": "/tmp/Solodev/Solodev.zip",
+            "destination": "C:\\inetpub\\Solodev\\Solodev.zip"
+        },
+        {
             "type": "windows-shell",
             "script": "hashicorp/solodev-php-56/windows-2016/scripts/prereqs.bat"
         },

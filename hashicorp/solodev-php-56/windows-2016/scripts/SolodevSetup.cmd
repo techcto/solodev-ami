@@ -24,7 +24,7 @@ C:\tools\mysql\current\bin\mysql.exe -uroot -e "CREATE DATABASE solodev_solodev"
 C:\tools\mysql\current\bin\mysql.exe -uroot -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('%EC2_INSTANCE_ID%');"
 
 
-set MONGO_DIR=C:\Program Files\MongoDB\Server\3.2
+set MONGO_DIR=C:\Program Files\MongoDB\Server\3.4
 
 mkdir "%MONGO_DIR%\data\db"
 mkdir "%MONGO_DIR%\log"
