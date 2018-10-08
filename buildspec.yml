@@ -21,33 +21,33 @@ phases:
   build:
     commands:
       - FORCE_BUILDS=false
-      - |
-        TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/aws1 -printf "%Ts\n" | sort | tail -1)))
-        if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
-        echo "Validating - solodev-cluster-aws1-packer.json"
-        ./packer validate hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
-        echo "Building HashiCorp Packer template - solodev-cluster-aws1-packer.json"
-        ./packer build hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
-        fi
-      - |
-        TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/aws2 -printf "%Ts\n" | sort | tail -1)))
-        if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
-        echo "Validating - solodev-cluster-aws2-packer.json"
-        ./packer validate hashicorp/solodev-phpfpm-72/aws2/config/solodev-cluster-aws2-packer.json
-        echo "Building HashiCorp Packer template - solodev-cluster-aws2-packer.json"
-        ./packer build hashicorp/solodev-phpfpm-72/aws2/config/solodev-cluster-aws2-packer.json
-        fi
-      - |
-        TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/single -printf "%Ts\n" | sort | tail -1)))
-        if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
-        echo "Validating - solodev-single-packer.json"
-        ./packer validate hashicorp/solodev-phpfpm-72/single/config/solodev-single-packer.json
-        echo "Building HashiCorp Packer template - solodev-single-packer.json"
-        ./packer build hashicorp/solodev-phpfpm-72/single/config/solodev-single-packer.json
-        fi
+      # - |
+      #   TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/aws1 -printf "%Ts\n" | sort | tail -1)))
+      #   if [ "$FORCE_BUILDS" = true ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
+      #   echo "Validating - solodev-cluster-aws1-packer.json"
+      #   ./packer validate hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
+      #   echo "Building HashiCorp Packer template - solodev-cluster-aws1-packer.json"
+      #   ./packer build hashicorp/solodev-phpfpm-72/aws1/config/solodev-cluster-aws1-packer.json
+      #   fi
+      # - |
+      #   TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/aws2 -printf "%Ts\n" | sort | tail -1)))
+      #   if [ "$FORCE_BUILDS" = true ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
+      #   echo "Validating - solodev-cluster-aws2-packer.json"
+      #   ./packer validate hashicorp/solodev-phpfpm-72/aws2/config/solodev-cluster-aws2-packer.json
+      #   echo "Building HashiCorp Packer template - solodev-cluster-aws2-packer.json"
+      #   ./packer build hashicorp/solodev-phpfpm-72/aws2/config/solodev-cluster-aws2-packer.json
+      #   fi
+      # - |
+      #   TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-phpfpm-72/single -printf "%Ts\n" | sort | tail -1)))
+      #   if [ "$FORCE_BUILDS" = true ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
+      #   echo "Validating - solodev-single-packer.json"
+      #   ./packer validate hashicorp/solodev-phpfpm-72/single/config/solodev-single-packer.json
+      #   echo "Building HashiCorp Packer template - solodev-single-packer.json"
+      #   ./packer build hashicorp/solodev-phpfpm-72/single/config/solodev-single-packer.json
+      #   fi
       - |
         TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-php-56/windows-2012 -printf "%Ts\n" | sort | tail -1)))
-        if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
+        if [ "$FORCE_BUILDS" = true ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
         echo "Validating - solodev-single-windows-2012-packer.json"
         ./packer validate hashicorp/solodev-php-56/windows-2012/config/solodev-single-windows-2012-packer.json
         echo "Building HashiCorp Packer template - solodev-single-windows-2012-packer.json"
@@ -55,7 +55,7 @@ phases:
         fi
       - |
         TIME_DIFF_LATEST_FILE=$(($(date +%s)-$(find hashicorp/solodev-php-56/windows-2016 -printf "%Ts\n" | sort | tail -1)))
-        if [ $FORCE_BUILDS ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
+        if [ "$FORCE_BUILDS" = true ] || [ $TIME_DIFF_LATEST_FILE -lt 3600 ] ; then
         echo "Validating - solodev-single-windows-2016-packer.json"
         ./packer validate hashicorp/solodev-php-56/windows-2016/config/solodev-single-windows-2016-packer.json
         echo "Building HashiCorp Packer template - solodev-single-windows-2016-packer.json"
