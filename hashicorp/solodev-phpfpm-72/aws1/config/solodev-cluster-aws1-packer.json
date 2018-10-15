@@ -15,7 +15,6 @@
         "ssh_username": "ec2-user",
         "ami_name": "{{user `aws_ami_name`}}",
         "ami_description": "Solodev CMS - Enterprise Cluster Edition",
-        "ami_groups": ["all"],
         "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {
@@ -63,6 +62,11 @@
             "destination": "/tmp"
         },
         {
+            "type": "file",
+            "source": "/tmp/Solodev",
+            "destination": "/tmp/Solodev"
+        },
+        {
             "type": "shell",
             "inline": [
                 "ls -al /tmp",
@@ -72,6 +76,7 @@
                 "sudo /tmp/scripts/install-phpfpm.sh",
                 "sudo /tmp/scripts/install-node.sh",
                 "sudo /tmp/scripts/install-mongo.sh",
+                "sudo /tmp/scripts/install-solodev.sh",
                 "sudo /tmp/scripts/cleanup.sh"
             ]
         }
