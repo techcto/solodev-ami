@@ -13,9 +13,9 @@ yum -y install tidy
 #Install PHP-FPM 7.2
 yum --enablerepo=epel --disablerepo=amzn-main -y install libwebp
 yum --enablerepo=remi-php72 install -y php72-php-fpm php72-php-common \
-php72-php-devel php72-php-mysqli php72-php-mysqlnd php72-php-pdo_mysql \
+php72-php-devel php72-php-mysqli php72-php-pdo_mysql \
 php72-php-gd php72-php-mbstring php72-php-pear php72-php-soap php72-php-zip php72-php-tidy \
-php72-php-pecl-mongodb php72-php-pecl-apcu php72-php-pecl-oauth php72-php-pecl-xdebug
+php72-php-pecl-mongodb php72-php-pecl-apcu php72-php-pecl-oauth
 scl enable php72 'php -v'
 ln -s /usr/bin/php72 /usr/bin/php
 
