@@ -41,7 +41,7 @@ sed -i "s/REPLACE_WITH_DBUSER/solodevsql/g" $MOUNT/Client_Settings.xml
 sed -i "s/REPLACE_WITH_DBPASSWORD/$EC2_INSTANCE_ID/g" $MOUNT/Client_Settings.xml
 
 echo "Install Solodev"
-php /var/www/Solodev/core/update.php admin $EC2_INSTANCE_ID >> /root/phpinstall.log
+php /var/www/Solodev/core/update.php solodev $EC2_INSTANCE_ID >> /root/phpinstall.log
 chmod -Rf 2770 /var/www/Solodev/clients
 chown -Rf apache.apache /var/www/Solodev/clients
 
