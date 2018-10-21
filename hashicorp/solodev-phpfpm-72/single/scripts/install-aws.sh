@@ -1,10 +1,3 @@
-#Install AWS CodeDeploy
-wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
-chmod +x ./install
-./install auto
-service codedeploy-agent start
-rm -f install
-
 #Install AWS CloudWatch 
 cd /root
 wget http://ec2-downloads.s3.amazonaws.com/cloudwatch-samples/CloudWatchMonitoringScripts-v1.1.0.zip
