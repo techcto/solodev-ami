@@ -32,9 +32,11 @@ echo 'SetEnvIfNoCase ^Authorization$ "(.+)" HTTP_AUTHORIZATION=$1' >> /etc/httpd
 echo "<FilesMatch \.(php|phar|stml)$>" >> /etc/httpd/conf.d/php72-php.conf
 echo ' SetHandler "proxy:fcgi://127.0.0.1:9000"' >> /etc/httpd/conf.d/php72-php.conf
 echo "</FilesMatch>" >> /etc/httpd/conf.d/php72-php.conf
+
+echo "request_terminate_timeout = 0" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "security.limit_extensions = .php .stml" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "listen.owner = apache" >> /etc/opt/remi/php72/php-fpm.d/www.conf
-echo "listen.mode = 0660" >> /etc/opt/remi/php72/php-fpm.d/www.conf
+echo "listen.mode = 0770" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "chdir = /var/www" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 
 #Update Hosts file to resolve local solodev
