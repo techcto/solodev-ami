@@ -143,6 +143,9 @@ echo "rm -f $MOUNT/Client_Settings.xml" >> /root/restore.sh
 echo "mv $MOUNT/Client_Settings.xml.bak $MOUNT/Client_Settings.xml" >> /root/restore.sh
 chmod 700 /root/restore.sh
 
+export PATH=/var/www/Solodev/.node_modules_global/bin:$PATH
+npm config set prefix '/var/www/Solodev/.node_modules_global'
+
 rm -f /root/init-solodev.sh
 EOF
 chmod 700 /root/init-solodev.sh
