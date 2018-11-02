@@ -4,4 +4,4 @@ yum install -y --enablerepo=nodesource nodejs
 mkdir -p "/var/www/node_modules_global"
 npm config set prefix "/var/www/node_modules_global"
 npm install -g autoprefixer clean-css-cli npm-run-all postcss-cli postcss-discard-empty shx uglify-js 
-npm install --unsafe-perm node-sass
+npm install -g --unsafe-perm node-sass

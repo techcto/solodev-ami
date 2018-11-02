@@ -1,7 +1,7 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
-        "aws_ami_name": "solodev-cluster-aws-enterprise-v{{env `SOLODEV_RELEASE`}}",
+        "aws_ami_name": "solodev-cluster-aws-byol-v{{env `SOLODEV_RELEASE`}}",
         "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}"
