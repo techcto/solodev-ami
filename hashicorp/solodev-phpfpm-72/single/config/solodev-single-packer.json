@@ -65,6 +65,11 @@
             "destination": "/tmp/Solodev"
         },
         {
+            "type": "file",
+            "source": "hashicorp/solodev-phpfpm-72/single/bin/restart.php",
+            "destination": "/root/restart.php"
+        },
+        {
             "type": "shell",
             "inline": [
                 "ls -al /tmp",
