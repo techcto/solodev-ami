@@ -27,4 +27,5 @@ echo "IncludeOptional /var/www/Solodev/clients/solodev/Vhosts/*.*" >> /etc/httpd
 echo "IncludeOptional /var/www/Solodev/clients/solodev/s.Vhosts/*.*" >> /etc/httpd/conf.d/solodev.conf
 
 #Add Solodev to Crontab
+mv /tmp/restart.php /root/restart.php
 (crontab -l 2>/dev/null; echo "*/2 * * * * php /root/restart.php") | crontab -

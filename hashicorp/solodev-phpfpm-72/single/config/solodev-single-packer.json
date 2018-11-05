@@ -67,7 +67,7 @@
         {
             "type": "file",
             "source": "hashicorp/solodev-phpfpm-72/single/bin/restart.php",
-            "destination": "/root/restart.php"
+            "destination": "/tmp/restart.php"
         },
         {
             "type": "shell",
