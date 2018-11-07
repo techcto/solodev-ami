@@ -61,9 +61,9 @@ echo "post_max_size = 60M" >>/etc/opt/remi/php72/php.ini
 echo "upload_max_filesize = 60M" >>/etc/opt/remi/php72/php.ini
 echo "date.timezone = UTC" >>/etc/opt/remi/php72/php.ini
 echo "realpath_cache_size = 1M" >>/etc/opt/remi/php72/php.ini
-# echo "session.cookie_httponly = 1" >>/etc/opt/remi/php72/php.ini
+echo "session.cookie_httponly = 1" >>/etc/opt/remi/php72/php.ini
+# echo "session.cookie_secure = 1" >>/etc/opt/remi/php72/php.ini
 echo "session.gc_maxlifetime = 1200" >>/etc/opt/remi/php72/php.ini
-echo "session.cookie_secure = 1" >>/etc/opt/remi/php72/php.ini
 echo "[apcu]" >>/etc/opt/remi/php72/php.ini
 echo "apc.enabled=1" >>/etc/opt/remi/php72/php.ini
 echo "apc.shm_size=32M" >>/etc/opt/remi/php72/php.ini
