@@ -10,6 +10,7 @@ echo "<Directory /var/www/>" >> /etc/httpd/conf.d/solodev.conf
 echo "Options FollowSymLinks" >> /etc/httpd/conf.d/solodev.conf
 echo "AllowOverride None" >> /etc/httpd/conf.d/solodev.conf
 echo "Require all granted" >> /etc/httpd/conf.d/solodev.conf
+echo "ErrorDocument 403 /404" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 
 echo "<Directory \"/var/www/Solodev\">" >> /etc/httpd/conf.d/solodev.conf
