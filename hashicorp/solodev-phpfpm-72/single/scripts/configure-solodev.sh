@@ -6,6 +6,12 @@ chown -Rf apache.apache /var/www/Solodev
 chmod -Rf 2770 /var/www/Solodev
 
 #Configure solodev.conf
+echo "<Directory /var/www/>" >> /etc/httpd/conf.d/solodev.conf
+echo "Options FollowSymLinks" >> /etc/httpd/conf.d/solodev.conf
+echo "AllowOverride None" >> /etc/httpd/conf.d/solodev.conf
+echo "Require all granted" >> /etc/httpd/conf.d/solodev.conf
+echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
+
 echo "<Directory \"/var/www/Solodev\">" >> /etc/httpd/conf.d/solodev.conf
 echo "Options -Indexes" >> /etc/httpd/conf.d/solodev.conf
 echo "Options FollowSymLinks" >> /etc/httpd/conf.d/solodev.conf
