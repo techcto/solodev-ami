@@ -4,6 +4,7 @@ ls -al /var/www/solodev
 mkdir -p /var/www/solodev/tmp
 chown -Rf apache.apache /var/www/solodev
 chmod -Rf 2770 /var/www/solodev
+mkdir -p /var/www/solodev/clients/solodev
 
 #Configure solodev.conf
 echo "<Directory /var/www/solodev>" >> /etc/httpd/conf.d/solodev.conf
@@ -27,4 +28,5 @@ echo "IncludeOptional /var/www/solodev/clients/solodev/s.Vhosts/*.*" >> /etc/htt
 
 #Add Solodev to Crontab
 mv /tmp/restart.php /root/restart.php
+mv /tmp/Client_Settings.xml /var/www/solodev/clients/solodev/Client_Settings.xml
 (crontab -l 2>/dev/null; echo "*/2 * * * * php /root/restart.php") | crontab -

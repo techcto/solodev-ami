@@ -36,7 +36,6 @@ echo "Create default Solodev folders"
 mkdir -p $MOUNT/Vhosts		
 mkdir -p $MOUNT/s.Vhosts				
 mkdir -p $MOUNT/Main
-mv /tmp/Client_Settings.xml $MOUNT/Client_Settings.xml
 
 echo "Configure Solodev config"			
 sed -i "s/REPLACE_WITH_DATABASE/solodev/g" $MOUNT/Client_Settings.xml
