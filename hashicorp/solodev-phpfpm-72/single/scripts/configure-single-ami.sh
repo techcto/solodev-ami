@@ -1,6 +1,6 @@
 echo "Init Solodev client drive"
 mkfs.ext4 /dev/xvdb
-echo '/dev/xvdb /var/www/Solodev/clients/solodev ext4 defaults,auto,noexec 0 0' >> /etc/fstab
+echo '/dev/xvdb /var/www/solodev/clients/solodev ext4 defaults,auto,noexec 0 0' >> /etc/fstab
 blockdev --setra 32 /dev/xvdb
 
 echo "Download server vars from AWS"
@@ -11,7 +11,7 @@ test -n "$EC2_INSTANCE_ID" || die 'cannot obtain instance-id'
 EC2_AVAIL_ZONE="`wget -q -O - http://169.254.169.254/latest/meta-data/placement/availability-zone || die \"wget availability-zone has failed: $?\"`"
 test -n "$EC2_AVAIL_ZONE" || die 'cannot obtain availability-zone'
 EC2_REGION="\`echo "$EC2_AVAIL_ZONE" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'\`"
-MOUNT="/var/www/Solodev/clients/solodev"
+MOUNT="/var/www/solodev/clients/solodev"
 
 echo "Create Solodev database and user"
 echo "CREATE DATABASE solodev;" >> /tmp/setup.mysql
@@ -31,7 +31,7 @@ echo "Create default Solodev folders"
 mkdir -p $MOUNT/Vhosts		
 mkdir -p $MOUNT/s.Vhosts				
 mkdir -p $MOUNT/Main
-mv /var/www/Solodev/core/aws/Client_Settings.xml $MOUNT/Client_Settings.xml
+mv /var/www/solodev/core/aws/Client_Settings.xml $MOUNT/Client_Settings.xml
 
 echo "Configure Solodev config"			
 sed -i "s/REPLACE_WITH_DATABASE/solodev/g" $MOUNT/Client_Settings.xml
@@ -41,9 +41,9 @@ sed -i "s/REPLACE_WITH_DBUSER/solodevsql/g" $MOUNT/Client_Settings.xml
 sed -i "s/REPLACE_WITH_DBPASSWORD/$EC2_INSTANCE_ID/g" $MOUNT/Client_Settings.xml
 
 echo "Install Solodev"
-php /var/www/Solodev/core/update.php solodev $EC2_INSTANCE_ID >> /root/phpinstall.log
-chmod -Rf 2770 /var/www/Solodev/clients
-chown -Rf apache.apache /var/www/Solodev/clients
+php /var/www/solodev/core/update.php solodev $EC2_INSTANCE_ID >> /root/phpinstall.log
+chmod -Rf 2770 /var/www/solodev/clients
+chown -Rf apache.apache /var/www/solodev/clients
 
 echo "Init default data dirs"
 mkdir -p $MOUNT/dbdumps	
@@ -51,8 +51,8 @@ mkdir -p $MOUNT/mongodumps
 
 echo "Create mysql backup script"
 echo '#!/bin/bash' > /root/dumpmysql.sh
-echo "mkdir -p /var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
-echo "PWD=/var/www/Solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
+echo "mkdir -p /var/www/solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
+echo "PWD=/var/www/solodev/clients/solodev/dbdumps" >> /root/dumpmysql.sh
 echo 'DBFILE=$PWD/databases.txt' >> /root/dumpmysql.sh
 echo 'rm -f $DBFILE' >> /root/dumpmysql.sh
 echo "/usr/bin/mysql -u root -p$EC2_INSTANCE_ID mysql -Ns -e \"show databases\" > \$DBFILE" >> /root/dumpmysql.sh
