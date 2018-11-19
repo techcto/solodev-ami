@@ -13,6 +13,11 @@ test -n "$EC2_AVAIL_ZONE" || die 'cannot obtain availability-zone'
 EC2_REGION="\`echo "$EC2_AVAIL_ZONE" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'\`"
 MOUNT="/var/www/solodev/clients/solodev"
 
+echo "Create PEM"
+mkdir -p "/var/www/solodev/clients/solodev/jwt"
+openssl genrsa -passout pass:ocoa -out /var/www/solodev/clients/solodev/jwt/private.pem 4096
+openssl rsa -pubout -passin pass:ocoa -in /var/www/solodev/clients/solodev/jwt/private.pem -out /var/www/solodev/clients/solodev/jwt/public.pem
+
 echo "Create Solodev database and user"
 echo "CREATE DATABASE solodev;" >> /tmp/setup.mysql
 echo "GRANT ALL ON solodev.* TO solodevsql@127.0.0.1 IDENTIFIED BY \"$EC2_INSTANCE_ID\";" >> /tmp/setup.mysql
