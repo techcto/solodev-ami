@@ -129,13 +129,13 @@
 	<setting name="response-from-name">
 		<name>response-from-name</name>
 		<shortcut>%rfn%</shortcut>
-		<value>Solodev</value>
+		<value>Solodev Mail</value>
 		<default></default>
 	</setting>
 	<setting name="response-from-email">
 		<name>response-from-email</name>
 		<shortcut>%rfe%</shortcut>
-		<value>support@solodev.com</value>
+		<value>mail@solodev.com</value>
 		<default></default>
 	</setting>
 	<setting name="completed-status">
