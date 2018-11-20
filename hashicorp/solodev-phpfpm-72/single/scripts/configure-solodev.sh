@@ -12,10 +12,13 @@ echo "Options FollowSymLinks" >> /etc/httpd/conf.d/solodev.conf
 echo "AllowOverride All" >> /etc/httpd/conf.d/solodev.conf
 echo "Require all granted" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
-echo "<Directory "/var/www/solodev/public">" >> /etc/httpd/conf.d/solodev.conf
+echo "<Directory \"/var/www/solodev/public\">" >> /etc/httpd/conf.d/solodev.conf
 echo "DirectoryIndex app.php" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
-echo "<Directory "/var/www/solodev/clients">" >> /etc/httpd/conf.d/solodev.conf                                                                                                                                                                                                                                                            
+echo "<Directory \"/var/www/solodev/public/www/CMS\">" >> /etc/httpd/conf.d/solodev.conf
+echo "DirectoryIndex index.stml" >> /etc/httpd/conf.d/solodev.conf
+echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
+echo "<Directory \"/var/www/solodev/clients\">" >> /etc/httpd/conf.d/solodev.conf                                                                                                                                                                                                                                                            
 echo "DirectoryIndex index.stml" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 
