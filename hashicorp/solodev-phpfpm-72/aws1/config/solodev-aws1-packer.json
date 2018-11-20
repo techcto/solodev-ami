@@ -1,7 +1,7 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
-        "aws_ami_name": "solodev-cluster-aws-byol-v{{env `SOLODEV_RELEASE`}}",
+        "aws_ami_name": "solodev-aws-marketplace-v{{env `SOLODEV_RELEASE`}}",
         "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}"
@@ -14,8 +14,7 @@
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
         "ami_name": "{{user `aws_ami_name`}}",
-        "ami_description": "Solodev CMS Opsworks Edition (BYOL)",
-        "ami_groups": ["all"],
+        "ami_description": "Solodev CMS Opsworks Edition (Marketplace)",
         "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {
@@ -63,6 +62,11 @@
             "destination": "/tmp"
         },
         {
+            "type": "file",
+            "source": "/tmp/Solodev",
+            "destination": "/tmp/Solodev"
+        },
+        {
             "type": "shell",
             "inline": [
                 "ls -al /tmp",
@@ -72,6 +76,7 @@
                 "sudo /tmp/scripts/install-phpfpm.sh",
                 "sudo /tmp/scripts/install-node.sh",
                 "sudo /tmp/scripts/install-mongo.sh",
+                "sudo /tmp/scripts/install-solodev.sh",
                 "sudo /tmp/scripts/cleanup.sh"
             ]
         }
