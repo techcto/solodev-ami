@@ -49,7 +49,7 @@ print "Apache Restart Time converted to Timestamp is " . $restarttime . "\n";
 if ($restarttime) {
   //var_dump($restarttime);
 
-  $path = "/var/www/Solodev/clients/solodev/Vhosts";
+  $path = "/var/www/solodev/clients/solodev/Vhosts";
 
   $restart_now = false;
 
