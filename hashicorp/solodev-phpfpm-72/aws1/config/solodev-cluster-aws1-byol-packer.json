@@ -14,7 +14,7 @@
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
         "ami_name": "{{user `aws_ami_name`}}",
-        "ami_description": "Solodev CMS - Enterprise Cluster Edition",
+        "ami_description": "Solodev CMS Opsworks Edition (BYOL)",
         "ami_groups": ["all"],
         "associate_public_ip_address": "true",
         "source_ami_filter": {
