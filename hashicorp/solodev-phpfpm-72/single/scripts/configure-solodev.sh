@@ -7,11 +7,10 @@ chmod -Rf 2770 /var/www/solodev
 mkdir -p /var/www/solodev/clients/solodev
 
 #Configure solodev.conf
-echo "<Directory /var/www/solodev>" >> /etc/httpd/conf.d/solodev.conf
-echo "Options FollowSymLinks -Indexes" >> /etc/httpd/conf.d/solodev.conf
+echo "<Directory \"/var/www/solodev\">" >> /etc/httpd/conf.d/solodev.conf
+echo "Options FollowSymLinks" >> /etc/httpd/conf.d/solodev.conf
 echo "AllowOverride All" >> /etc/httpd/conf.d/solodev.conf
-echo "Order allow,deny" >> /etc/httpd/conf.d/solodev.conf
-echo "Allow from all" >> /etc/httpd/conf.d/solodev.conf
+echo "Require all granted" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 echo "<Directory "/var/www/solodev/public">" >> /etc/httpd/conf.d/solodev.conf
 echo "DirectoryIndex app.php" >> /etc/httpd/conf.d/solodev.conf
