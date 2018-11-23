@@ -21,8 +21,8 @@ phases:
   build:
     commands:
       - chmod 700 build.sh
-      # - ./build.sh hashicorp/solodev-phpfpm-72/aws1/config solodev-aws1-packer.json
-      # - ./build.sh hashicorp/solodev-phpfpm-72/aws1/config solodev-aws1-byol-packer.json
+      - ./build.sh hashicorp/solodev-phpfpm-72/aws1/config solodev-aws1-packer.json
+      - ./build.sh hashicorp/solodev-phpfpm-72/aws1/config solodev-aws1-byol-packer.json
       # - ./build.sh hashicorp/solodev-phpfpm-72/aws2/config solodev-cluster-aws2-packer.json
       - ./build.sh hashicorp/solodev-phpfpm-72/single/config solodev-single-packer.json
   post_build:
