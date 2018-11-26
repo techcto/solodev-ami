@@ -11,3 +11,4 @@ sed -i 's/SSLProtocol all -SSLv2$/SSLProtocol all -SSLv2 -SSLv3/g' /etc/httpd/co
 
 #Permissions
 usermod -a -G apache ec2-user
+chown -Rf apache.apache /usr/share/httpd/
