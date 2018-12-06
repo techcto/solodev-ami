@@ -22,8 +22,6 @@
                 "name": "amzn-ami*-x86_64-ebs",
                 "root-device-type": "ebs"
             },
-
-
             "owners": [],
             "most_recent": true
         },
