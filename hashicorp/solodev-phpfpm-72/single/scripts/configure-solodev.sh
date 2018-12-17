@@ -8,6 +8,8 @@ mkdir -p /var/www/solodev/clients/solodev
 
 #Configure solodev.conf
 echo "<Directory \"/var/www/solodev\">" >> /etc/httpd/conf.d/solodev.conf
+echo "Options -Indexes" >> /etc/httpd/conf.d/solodev.conf
+echo "Options -MultiViews" >> /etc/httpd/conf.d/solodev.conf
 echo "Options FollowSymLinks" >> /etc/httpd/conf.d/solodev.conf
 echo "AllowOverride All" >> /etc/httpd/conf.d/solodev.conf
 echo "Require all granted" >> /etc/httpd/conf.d/solodev.conf
