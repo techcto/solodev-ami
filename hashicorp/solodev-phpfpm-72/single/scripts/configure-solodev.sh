@@ -23,7 +23,37 @@ echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 echo "<Directory \"/var/www/solodev/clients\">" >> /etc/httpd/conf.d/solodev.conf                                                                                                                                                                                                                                                            
 echo "DirectoryIndex index.stml" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
-
+echo "<Directory \"/var/www/solodev/clients\">" >> /etc/httpd/conf.d/solodev.conf                                                                                                                                                                                                                                            
+echo "DirectoryIndex index.stml" >> /etc/httpd/conf.d/solodev.conf
+echo "# CORE LEGACY REDIRECTS" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/adminValidatePrereq.js https://cdn.solodev.com/portal/adminValidatePrereq.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/pager-1.0.js https://cdn.solodev.com/portal/pager-1.0.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/pager-api.js https://cdn.solodev.com/portal/pager-api.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/underscore-min.js https://cdn.solodev.com/portal/underscore-min.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/date-format.js https://cdn.solodev.com/portal/date-format.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/images/solodev/icons/jpg.png https://cdn.solodev.com/portal/images/solodev/icons/jpg.png" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/images/solodev/icons/pdf.png https://cdn.solodev.com/portal/images/solodev/icons/pdf.png" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/images/solodev/icons/png.png https://cdn.solodev.com/portal/images/solodev/icons/png.png" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/portal/getEventDetails.js https://cdn.solodev.com/portal/getEventDetails.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/builder/js/jquery.validationEngine.js https://cdn.solodev.com/builder/js/jquery.validationEngine.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/builder/js/jquery.validationEngine-en.js https://cdn.solodev.com/builder/js/jquery.validationEngine-en.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/builder/css/validationEngine.jquery.css https://cdn.solodev.com/builder/css/validationEngine.jquery.css" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /core/analytics/ct.js https://cdn.solodev.com/analytics/ct.js" >> /etc/httpd/conf.d/solodev.conf
+echo "# ASSETS REDIRECTS" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/adminValidatePrereq.js https://cdn.solodev.com/portal/adminValidatePrereq.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/pager-1.0.js https://cdn.solodev.com/portal/pager-1.0.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/pager-api.js https://cdn.solodev.com/portal/pager-api.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/underscore-min.js https://cdn.solodev.com/portal/underscore-min.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/date-format.js https://cdn.solodev.com/portal/date-format.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/images/solodev/icons/jpg.png https://cdn.solodev.com/portal/images/solodev/icons/jpg.png" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/images/solodev/icons/pdf.png https://cdn.solodev.com/portal/images/solodev/icons/pdf.png" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/images/solodev/icons/png.png https://cdn.solodev.com/portal/images/solodev/icons/png.png" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/portal/getEventDetails.js https://cdn.solodev.com/portal/getEventDetails.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/builder/js/jquery.validationEngine.js https://cdn.solodev.com/builder/js/jquery.validationEngine.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/builder/js/jquery.validationEngine-en.js https://cdn.solodev.com/builder/js/jquery.validationEngine-en.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/builder/css/validationEngine.jquery.css https://cdn.solodev.com/builder/css/validationEngine.jquery.css" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/analytics/ct.js https://cdn.solodev.com/analytics/ct.js" >> /etc/httpd/conf.d/solodev.conf
+echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 echo "<VirtualHost *:80>" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /core /var/www/solodev/core/html_core" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /CK /var/www/solodev/public/www/node_modules/ckeditor-full" >> /etc/httpd/conf.d/solodev.conf
