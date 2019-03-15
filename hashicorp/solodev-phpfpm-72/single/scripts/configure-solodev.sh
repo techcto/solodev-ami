@@ -68,5 +68,5 @@ echo "IncludeOptional /var/www/solodev/clients/solodev/s.Vhosts/*.*" >> /etc/htt
 
 #Add Solodev to Crontab
 mv /tmp/restart.php /root/restart.php
-mv /tmp/Client_Settings.xml /root/Client_Settings.xml
+mv /tmp/client.env /root/client.env
 (crontab -l 2>/dev/null; echo "*/2 * * * * php /root/restart.php") | crontab -
