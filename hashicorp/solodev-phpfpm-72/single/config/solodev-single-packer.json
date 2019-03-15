@@ -66,8 +66,8 @@
         },
         {
             "type": "file",
-            "source": "hashicorp/solodev-phpfpm-72/single/bin/Client_Settings.xml",
-            "destination": "/tmp/Client_Settings.xml"
+            "source": "hashicorp/solodev-phpfpm-72/single/bin/client.env",
+            "destination": "/tmp/client.env"
         },
         {
             "type": "file",

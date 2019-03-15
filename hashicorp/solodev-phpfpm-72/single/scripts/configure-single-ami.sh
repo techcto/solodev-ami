@@ -38,12 +38,12 @@ mkdir -p $MOUNT/s.Vhosts
 mkdir -p $MOUNT/Main
 
 echo "Configure Solodev config"
-cp /root/Client_Settings.xml $MOUNT/Client_Settings.xml 			
-sed -i "s/REPLACE_WITH_DATABASE/solodev/g" $MOUNT/Client_Settings.xml
-sed -i "s/REPLACE_WITH_MONGOHOST/127.0.0.1/g" $MOUNT/Client_Settings.xml
-sed -i "s/REPLACE_WITH_DBHOST/127.0.0.1/g" $MOUNT/Client_Settings.xml
-sed -i "s/REPLACE_WITH_DBUSER/solodevsql/g" $MOUNT/Client_Settings.xml
-sed -i "s/REPLACE_WITH_DBPASSWORD/$EC2_INSTANCE_ID/g" $MOUNT/Client_Settings.xml
+cp /root/client.env $MOUNT/.env 			
+sed -i "s/REPLACE_WITH_DATABASE/solodev/g" $MOUNT/.env
+sed -i "s/REPLACE_WITH_MONGOHOST/127.0.0.1/g" $MOUNT/.env
+sed -i "s/REPLACE_WITH_DBHOST/127.0.0.1/g" $MOUNT/.env
+sed -i "s/REPLACE_WITH_DBUSER/solodevsql/g" $MOUNT/.env
+sed -i "s/REPLACE_WITH_DBPASSWORD/$EC2_INSTANCE_ID/g" $MOUNT/.env
 
 echo "Install Solodev"
 php /var/www/solodev/core/update.php solodev $EC2_INSTANCE_ID >> /root/phpinstall.log
