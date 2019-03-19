@@ -2,7 +2,7 @@
 yum -y remove php* httpd*
 
 #Install Required Devtools
-yum -y install gcc-c++ gcc pcre-devel make zip unzip wget curl cmake git yum-utils sudo sendmail
+yum -y install gcc-c++ gcc pcre-devel make zip unzip wget curl cmake git yum-utils sudo
 
 #Install Required Repos
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
