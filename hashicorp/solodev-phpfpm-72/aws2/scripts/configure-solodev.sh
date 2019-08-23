@@ -15,7 +15,7 @@ echo "ErrorDocument 403 /404" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 echo "<VirtualHost *:80>" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /core /var/www/solodev/core/html_core" >> /etc/httpd/conf.d/solodev.conf
-echo "Alias /CK /var/www/solodev/public/www/node_modules/ckeditor-full" >> /etc/httpd/conf.d/solodev.conf
+echo "Alias /CK /var/www/solodev/public/www/node_modules/ckeditor" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /api /var/www/solodev/core/api" >> /etc/httpd/conf.d/solodev.conf
 echo "ErrorDocument 404 /" >> /etc/httpd/conf.d/solodev.conf
 echo "ErrorDocument 401 /" >> /etc/httpd/conf.d/solodev.conf
