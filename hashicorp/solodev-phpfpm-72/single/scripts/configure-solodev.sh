@@ -53,11 +53,12 @@ echo "Redirect 301 /assets/builder/js/jquery.validationEngine.js https://cdn.sol
 echo "Redirect 301 /assets/builder/js/jquery.validationEngine-en.js https://cdn.solodev.com/builder/js/jquery.validationEngine-en.js" >> /etc/httpd/conf.d/solodev.conf
 echo "Redirect 301 /assets/builder/css/validationEngine.jquery.css https://cdn.solodev.com/builder/css/validationEngine.jquery.css" >> /etc/httpd/conf.d/solodev.conf
 echo "Redirect 301 /assets/analytics/ct.js https://cdn.solodev.com/analytics/ct.js" >> /etc/httpd/conf.d/solodev.conf
+echo "Redirect 301 /assets/google/search-script.js https://cdn.solodev.com/google/search-script.js" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 echo "<VirtualHost *:80>" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /core /var/www/solodev/core/html_core" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /CK/config.js /var/www/solodev/public/www/__/js/ck/config.js" >> /etc/httpd/conf.d/solodev.conf
-echo "Alias /CK /var/www/solodev/public/www/node_modules/ckeditor-full" >> /etc/httpd/conf.d/solodev.conf
+echo "Alias /CK /var/www/solodev/public/www/node_modules/ckeditor" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /api /var/www/solodev/core/api" >> /etc/httpd/conf.d/solodev.conf
 echo "ErrorDocument 404 /" >> /etc/httpd/conf.d/solodev.conf
 echo "ErrorDocument 401 /" >> /etc/httpd/conf.d/solodev.conf
