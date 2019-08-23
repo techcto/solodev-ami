@@ -6,15 +6,15 @@ chmod -Rf 2770 /var/www/solodev
 
 #Configure solodev.conf
 echo "<Directory \"/var/www/solodev\">" >> /etc/httpd/conf.d/solodev.conf
+echo "Options -Indexes" >> /etc/httpd/conf.d/solodev.conf
+echo "Options -MultiViews" >> /etc/httpd/conf.d/solodev.conf
 echo "Options FollowSymLinks" >> /etc/httpd/conf.d/solodev.conf
-echo "#AllowOverride None" >> /etc/httpd/conf.d/solodev.conf
 echo "AllowOverride All" >> /etc/httpd/conf.d/solodev.conf
-echo "Order allow,deny" >> /etc/httpd/conf.d/solodev.conf
-echo "Allow from all" >> /etc/httpd/conf.d/solodev.conf
-echo "ErrorDocument 403 /404" >> /etc/httpd/conf.d/solodev.conf
+echo "Require all granted" >> /etc/httpd/conf.d/solodev.conf
 echo "</Directory>" >> /etc/httpd/conf.d/solodev.conf
 echo "<VirtualHost *:80>" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /core /var/www/solodev/core/html_core" >> /etc/httpd/conf.d/solodev.conf
+echo "Alias /CK/config.js /var/www/solodev/public/www/__/js/ck/config.js" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /CK /var/www/solodev/public/www/node_modules/ckeditor" >> /etc/httpd/conf.d/solodev.conf
 echo "Alias /api /var/www/solodev/core/api" >> /etc/httpd/conf.d/solodev.conf
 echo "ErrorDocument 404 /" >> /etc/httpd/conf.d/solodev.conf
