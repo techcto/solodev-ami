@@ -14,6 +14,10 @@ npm install -g \
   slick-carousel@^1.8.1 \
   autoprefixer@^9.5.1 \
   clean-css-cli@^4.3.0 \
+  node-sass@^4.12.0 \
+  npm-run-all@^4.1.5 \
+  postcss@^6.4.1 \
+  postcss-cli@^6.1.3 \
   gulp@^4.0.2 \
   gulp-autoprefixer@^6.1.0 \
   gulp-clean@^0.4.0 \
