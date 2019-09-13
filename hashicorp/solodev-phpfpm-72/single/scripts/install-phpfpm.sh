@@ -36,6 +36,7 @@ echo "security.limit_extensions = .php .stml .xml" >> /etc/opt/remi/php72/php-fp
 echo "listen.owner = apache" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "listen.mode = 0660" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "chdir = /var/www" >> /etc/opt/remi/php72/php-fpm.d/www.conf
+echo "pm.max_requests = 500" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 
 #Update Hosts file to resolve local solodev
 echo "#Solodev PHP-FPM" >> /etc/hosts
@@ -56,7 +57,6 @@ echo "short_open_tag = On" >> /etc/opt/remi/php72/php.ini
 echo "expose_php = Off" >>/etc/opt/remi/php72/php.ini
 echo "max_execution_time = 90" >>/etc/opt/remi/php72/php.ini
 echo "max_input_time = 90" >>/etc/opt/remi/php72/php.ini
-echo "pm.max_requests = 500" >>/etc/opt/remi/php72/php.ini
 echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT & ~E_WARNING" >>/etc/opt/remi/php72/php.ini
 echo "post_max_size = 60M" >>/etc/opt/remi/php72/php.ini
 echo "upload_max_filesize = 60M" >>/etc/opt/remi/php72/php.ini
