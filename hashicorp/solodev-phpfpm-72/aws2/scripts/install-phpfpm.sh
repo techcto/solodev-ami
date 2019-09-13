@@ -56,6 +56,7 @@ echo "short_open_tag = On" >> /etc/opt/remi/php72/php.ini
 echo "expose_php = Off" >>/etc/opt/remi/php72/php.ini
 echo "max_execution_time = 90" >>/etc/opt/remi/php72/php.ini
 echo "max_input_time = 90" >>/etc/opt/remi/php72/php.ini
+echo "pm.max_requests = 500" >>/etc/opt/remi/php72/php.ini
 echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT & ~E_WARNING" >>/etc/opt/remi/php72/php.ini
 echo "post_max_size = 60M" >>/etc/opt/remi/php72/php.ini
 echo "upload_max_filesize = 60M" >>/etc/opt/remi/php72/php.ini
