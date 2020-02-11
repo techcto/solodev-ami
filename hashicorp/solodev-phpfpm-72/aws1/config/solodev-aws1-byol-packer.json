@@ -29,25 +29,14 @@
         "launch_block_device_mappings": [
             {
                 "device_name": "/dev/xvda",
-                "volume_size": 50,
-                "delete_on_termination": true
-            },
-            {
-                "device_name": "/dev/xvdb",
-                "volume_size": 50,
+                "volume_size": 64,
                 "delete_on_termination": true
             }
         ],
         "ami_block_device_mappings": [
             {
                 "device_name": "/dev/xvda",
-                "volume_size": 50,
-                "delete_on_termination": true,
-                "volume_type": "gp2"
-            },
-            {
-                "device_name": "/dev/xvdb",
-                "volume_size": 50,
+                "volume_size": 64,
                 "delete_on_termination": true,
                 "volume_type": "gp2"
             }
