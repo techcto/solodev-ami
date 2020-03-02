@@ -1,7 +1,7 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
-        "aws_ami_name": "solodev-aws-byol-v{{env `SOLODEV_RELEASE`}}",
+        "aws_ami_name": "solodev-cms-opsworks-byol-v{{env `SOLODEV_RELEASE`}}",
         "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}"
@@ -20,7 +20,7 @@
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "amzn-ami-hvm*-x86_64-ebs",
+                "name": "amzn2-ami-hvm*-x86_64-ebs",
                 "root-device-type": "ebs"
             },
             "owners": [],

@@ -4,7 +4,7 @@
         "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}",
-        "aws_ami_name": "solodev-single-v{{env `SOLODEV_RELEASE`}}"
+        "aws_ami_name": "solodev-lite-v{{env `SOLODEV_RELEASE`}}"
     },
 
     "builders": [{
@@ -14,12 +14,12 @@
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
         "ami_name": "{{user `aws_ami_name`}}",
-        "ami_description": "Solodev CMS - Single Server Edition",
+        "ami_description": "Solodev CMS - Lite Edition",
         "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "amzn2-ami*-x86_64-ebs",
+                "name": "amzn2-ami-hvm*-x86_64-ebs",
                 "root-device-type": "ebs"
             },
             "owners": [],
@@ -30,22 +30,11 @@
                 "device_name": "/dev/xvda",
                 "volume_size": 50,
                 "delete_on_termination": true
-            },
-            {
-                "device_name": "/dev/xvdb",
-                "volume_size": 50,
-                "delete_on_termination": true
             }
         ],
         "ami_block_device_mappings": [
             {
                 "device_name": "/dev/xvda",
-                "volume_size": 50,
-                "delete_on_termination": true,
-                "volume_type": "gp2"
-            },
-            {
-                "device_name": "/dev/xvdb",
                 "volume_size": 50,
                 "delete_on_termination": true,
                 "volume_type": "gp2"
