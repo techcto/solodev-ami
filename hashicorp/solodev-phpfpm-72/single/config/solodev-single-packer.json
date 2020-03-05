@@ -59,11 +59,6 @@
     "provisioners": [
         {
             "type": "file",
-            "source": "hashicorp/solodev-phpfpm-72/single/scripts",
-            "destination": "/tmp"
-        },
-        {
-            "type": "file",
             "source": "/tmp/Solodev",
             "destination": "/tmp/Solodev"
         },
@@ -86,8 +81,7 @@
             "type": "shell",
             "inline": [
                 "ls -al /tmp",
-                "ls -al /tmp/Solodev",
-                "sudo chmod 700 /tmp/scripts/*"
+                "ls -al /tmp/Solodev"
             ]
         },
         {
@@ -98,15 +92,15 @@
             ],
             "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
             "scripts": [
-                "scripts/install-base.sh",
-                "scripts/install-httpd.sh",
-                "scripts/install-phpfpm.sh",
-                "scripts/install-node.sh",
-                "scripts/install-mongo.sh",
-                "scripts/configure-solodev.sh",
-                "scripts/install-mysql.sh",
-                "scripts/configure-single-ami.sh",
-                "scripts/install-aws.sh"
+                "hashicorp/solodev-phpfpm-72/single/scripts/install-base.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/install-httpd.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/install-phpfpm.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/install-node.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/install-mongo.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/configure-solodev.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/install-mysql.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/configure-single-ami.sh",
+                "hashicorp/solodev-phpfpm-72/single/scripts/install-aws.sh"
             ]
         },
         {
