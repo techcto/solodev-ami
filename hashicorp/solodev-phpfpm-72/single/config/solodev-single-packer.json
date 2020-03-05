@@ -98,15 +98,15 @@
             ],
             "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
             "scripts": [
-                "./install-base.sh",
-                "./install-httpd.sh",
-                "./install-phpfpm.sh",
-                "./install-node.sh",
-                "./install-mongo.sh",
-                "./configure-solodev.sh",
-                "./install-mysql.sh",
-                "./configure-single-ami.sh",
-                "./install-aws.sh"
+                "scripts/install-base.sh",
+                "scripts/install-httpd.sh",
+                "scripts/install-phpfpm.sh",
+                "scripts/install-node.sh",
+                "scripts/install-mongo.sh",
+                "scripts/configure-solodev.sh",
+                "scripts/install-mysql.sh",
+                "scripts/configure-single-ami.sh",
+                "scripts/install-aws.sh"
             ]
         },
         {
