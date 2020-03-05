@@ -137,7 +137,7 @@ echo "Add backup routine to Crontab"
          
 echo "Generate restore script"
 echo "#!/bin/bash" > /root/restore.sh
-echo "mv $MOUNT/Client_Settings.xml $MOUNT/Client_Settings.xml.bak" >> /root/restore.sh
+echo "mv $MOUNT/.env $MOUNT/.env.bak" >> /root/restore.sh
 echo "export PASSPHRASE=$EC2_INSTANCE_ID" >> /root/restore.sh
 echo "export AWS_ACCESS_KEY_ID='IAM_ACCESS_KEY'" >> /root/restore.sh
 echo "export AWS_SECRET_ACCESS_KEY='IAM_SECRET_KEY'" >> /root/restore.sh
@@ -146,8 +146,8 @@ echo "chmod -Rf 2770 $MOUNT" >> /root/restore.sh
 echo "chown -Rf apache.apache $MOUNT" >> /root/restore.sh
 echo "gunzip < $MOUNT/dbdumps/solodev.sql.gz | mysql -u root -p$EC2_INSTANCE_ID solodev" >> /root/restore.sh
 echo "mongorestore $MOUNT/mongodumps" >> /root/restore.sh
-echo "rm -f $MOUNT/Client_Settings.xml" >> /root/restore.sh
-echo "mv $MOUNT/Client_Settings.xml.bak $MOUNT/Client_Settings.xml" >> /root/restore.sh
+echo "rm -f $MOUNT/.env" >> /root/restore.sh
+echo "mv $MOUNT/.env.xml.bak $MOUNT/.env" >> /root/restore.sh
 chmod 700 /root/restore.sh
 
 rm -f /root/init-solodev.sh
