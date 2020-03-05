@@ -87,7 +87,7 @@
             "inline": [
                 "ls -al /tmp",
                 "ls -al /tmp/Solodev",
-                "sudo chmod 700 /tmp/scripts/*",
+                "sudo chmod 700 /tmp/scripts/*"
             ]
         },
         {
