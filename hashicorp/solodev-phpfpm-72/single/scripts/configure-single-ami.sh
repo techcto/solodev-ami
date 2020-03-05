@@ -38,7 +38,7 @@ mkdir -p $MOUNT/s.Vhosts
 mkdir -p $MOUNT/Main
 
 echo "Configure Solodev config"
-cp /root/client.env $MOUNT/client.env			
+mv /root/client.env $MOUNT/client.env			
 sed -i "s/REPLACE_WITH_DATABASE/solodev/g" $MOUNT/client.env
 sed -i "s/REPLACE_WITH_MONGOHOST/127.0.0.1/g" $MOUNT/client.env
 sed -i "s/REPLACE_WITH_DBHOST/127.0.0.1/g" $MOUNT/client.env

@@ -72,7 +72,10 @@ echo "IncludeOptional /var/www/solodev/clients/solodev/s.Vhosts/*.*" >> /etc/htt
 mv /tmp/restart.php /root/restart.php
 mv /tmp/check.sh /root/check.sh
 mv /tmp/client.env /root/client.env
-sed -i "s/REPLACE_WITH_LICENSE_SERVER/$LICENSE_SERVER/g" /root/check.sh
-sed -i "s/REPLACE_WITH_DOCUMENT_ROOT/$DOCUMENT_ROOT/g" /root/check.sh
+chmod 700 /root/check.sh
+echo $LICENSE_SERVER >> /root/log.txt
+echo $DOCUMENT_ROOT >> /root/log.txt
+sed -i "s:REPLACE_WITH_LICENSE_SERVER:$LICENSE_SERVER:g" /root/check.sh
+sed -i "s:REPLACE_WITH_DOCUMENT_ROOT:$DOCUMENT_ROOT:g" /root/check.sh
 (crontab -l 2>/dev/null; echo "*/2 * * * * php /root/restart.php") | crontab -
 (crontab -l 2>/dev/null; echo "0,15,30,45 * * * * php /root/check.sh") | crontab -
