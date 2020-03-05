@@ -84,7 +84,7 @@
         },
         {
             "type": "shell",
-            "environment_vars": [ "LICENSE_SERVER={{user `LICENSE_SERVER`}}", "DOCUMENT_ROOT={{user `document_root`}}" ],
+            "environment_vars": [ "LICENSE_SERVER={{user `license_server`}}", "DOCUMENT_ROOT={{user `document_root`}}" ],
             "inline": [
                 "ls -al /tmp",
                 "ls -al /tmp/Solodev",
