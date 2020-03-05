@@ -10,7 +10,7 @@ function logOutput {
 
 function getVersion {
     unset LICENSE_SOFTWARE_VERSION
-    LICENSE_SOFTWARE_VERSION=$(cat REPLACE_WITH_DOCUMENT_ROOT/version.txt)
+    LICENSE_SOFTWARE_VERSION=$(cat /var/www/solodev/version.txt)
     logOutput "Detected Version: $LICENSE_SOFTWARE_VERSION"
 }
 
@@ -47,7 +47,7 @@ function callLicenseServer {
     
     local encodedMetadata=$(echo $LICENSE_META_DATA | php -r 'echo urlencode(fgets(STDIN));')
 
-    local licenseURL="https://REPLACE_WITH_LICENSE_SERVER/authorize/?version=${LICENSE_SOFTWARE_VERSION}&signature=${LICENSE_SIGNATURE}&metadata=$encodedMetadata"
+    local licenseURL="https://license.solodev.org/authorize/?version=${LICENSE_SOFTWARE_VERSION}&signature=${LICENSE_SIGNATURE}&metadata=$encodedMetadata"
     
     logOutput "LICENSE URL"
     logOutput "$licenseURL"
@@ -61,8 +61,8 @@ function callLicenseServer {
     local needle="LICENSE FILE DATA"
 
     if [ "${license}" != "${license/${needle}/}" ]; then
-        logOutput  "Writing license to REPLACE_WITH_DOCUMENT_ROOT/license.txt"
-        echo "$license" | sed 's/\\n/\n/g' > REPLACE_WITH_DOCUMENT_ROOT/license.txt
+        logOutput  "Writing license to /var/www/solodev/license.txt"
+        echo "$license" | sed 's/\\n/\n/g' > /var/www/solodev/license.txt
     else
         logOutput "License response did not contain valid license. Not writing to license file."
     fi
