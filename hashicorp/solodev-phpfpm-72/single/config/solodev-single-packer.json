@@ -86,13 +86,6 @@
             "type": "shell",
             "environment_vars": [ "LICENSE_SERVER={{user `LICENSE_SERVER`}}", "DOCUMENT_ROOT={{user `document_root`}}" ],
             "inline": [
-                "sudo sed -i \"s/REPLACE_WITH_LICENSE_SERVER/$LICENSE_SERVER/g\" /tmp/check.sh",
-                "sudo sed -i \"s/REPLACE_WITH_DOCUMENT_ROOT/$DOCUMENT_ROOT/g\" /tmp/check.sh"
-            ]
-        },
-        {
-            "type": "shell",
-            "inline": [
                 "ls -al /tmp",
                 "ls -al /tmp/Solodev",
                 "sudo chmod 700 /tmp/scripts/*",
