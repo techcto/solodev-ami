@@ -84,23 +84,29 @@
         },
         {
             "type": "shell",
-            "environment_vars": [ 
-                "LICENSE_SERVER={{env `LICENSE_SERVER`}}", 
-                "DOCUMENT_ROOT={{env `DOCUMENT_ROOT`}}" 
-            ],
             "inline": [
                 "ls -al /tmp",
                 "ls -al /tmp/Solodev",
                 "sudo chmod 700 /tmp/scripts/*",
-                "sudo /tmp/scripts/install-base.sh",
-                "sudo /tmp/scripts/install-httpd.sh",
-                "sudo /tmp/scripts/install-phpfpm.sh",
-                "sudo /tmp/scripts/install-node.sh",
-                "sudo /tmp/scripts/install-mongo.sh",
-                "sudo /tmp/scripts/configure-solodev.sh",
-                "sudo /tmp/scripts/install-mysql.sh",
-                "sudo /tmp/scripts/configure-single-ami.sh",
-                "sudo /tmp/scripts/install-aws.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "environment_vars": [ 
+                "LICENSE_SERVER={{user `LICENSE_SERVER`}}", 
+                "DOCUMENT_ROOT={{user `DOCUMENT_ROOT`}}" 
+            ],
+            "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+            "scripts": [
+                "/tmp/scripts/install-base.sh",
+                "/tmp/scripts/install-httpd.sh",
+                "/tmp/scripts/install-phpfpm.sh",
+                "/tmp/scripts/install-node.sh",
+                "/tmp/scripts/install-mongo.sh",
+                "/tmp/scripts/configure-solodev.sh",
+                "/tmp/scripts/install-mysql.sh",
+                "/tmp/scripts/configure-single-ami.sh",
+                "/tmp/scripts/install-aws.sh"
             ]
         },
         {
