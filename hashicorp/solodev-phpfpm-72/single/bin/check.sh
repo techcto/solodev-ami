@@ -28,7 +28,7 @@ function getMachineInfo {
     metadata=$(getEnvVarData)
     metadata=$(echo "${metadata:1:-1}")
 
-    ec2Metadata=$(curl http://169.254.169.254/latest/dynamic/instance-identity/document 2>/dev/null | tr -d '\040\011\012\015')
+    ec2Metadata=$(TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/dynamic/instance-identity/document 2>/dev/null | tr -d '\040\011\012\015')
     if [[ -z "$ec2Metadata" ]] || [ "$ec2Metadata" = "" ]; then
         logOutput "NOT ON AMAZON EC2"
     else
