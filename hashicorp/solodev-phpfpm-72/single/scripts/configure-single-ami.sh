@@ -46,6 +46,9 @@ sed -i "s/REPLACE_WITH_DBUSER/solodevsql/g" $MOUNT/client.env
 sed -i "s/REPLACE_WITH_DBPASSWORD/$EC2_INSTANCE_ID/g" $MOUNT/client.env
 mv $MOUNT/client.env $MOUNT/.env	
 
+echo "Activate License"
+/root/check.sh
+
 echo "Install Solodev"
 php /var/www/solodev/core/update.php solodev $EC2_INSTANCE_ID >> /root/phpinstall.log
 chmod -Rf 2770 /var/www/solodev/clients
@@ -70,8 +73,6 @@ chmod 700 /root/dumpmysql.sh
 echo "Install restore scripts"
 yum install -y duplicity duply python-boto mysql --enablerepo=epel
 curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
-
-echo "Write sample bucket permissions"
 
 cat <<EOT >> /root/s3-backup-bucket.policy
 #Copy the below into S3->Bucket->Permissions->Buckey Policy

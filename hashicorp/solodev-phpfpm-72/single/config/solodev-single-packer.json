@@ -4,7 +4,9 @@
         "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
         "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
         "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}",
-        "aws_ami_name": "solodev-lite-v{{env `SOLODEV_RELEASE`}}"
+        "aws_ami_name": "solodev-lite-v{{env `SOLODEV_RELEASE`}}",
+        "document_root": "{{env `DOCUMENT_ROOT`}}",
+        "license_server": "{{env `LICENSE_SERVER`}}"
     },
 
     "builders": [{
@@ -74,6 +76,18 @@
             "type": "file",
             "source": "hashicorp/solodev-phpfpm-72/single/bin/restart.php",
             "destination": "/tmp/restart.php"
+        },
+        {
+            "type": "file",
+            "source": "hashicorp/solodev-phpfpm-72/single/bin/check.sh",
+            "destination": "/tmp/check.sh"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo sed -i \"s/REPLACE_WITH_LICENSE_SERVER/{{user `license_server`}}/g\" /tmp/check.sh",
+                "sudo sed -i \"s/REPLACE_WITH_DOCUMENT_ROOT/{{user `document_root`}}/g\" /tmp/check.sh"
+            ]
         },
         {
             "type": "shell",
