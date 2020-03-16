@@ -36,6 +36,9 @@ echo "Create default Solodev folders"
 mkdir -p $MOUNT/Vhosts		
 mkdir -p $MOUNT/s.Vhosts				
 mkdir -p $MOUNT/Main
+mkdir -p $MOUNT/config
+mkdir -p $MOUNT/apps
+mkdir -p $MOUNT/images
 
 echo "Configure Solodev config"
 mv /root/client.env $MOUNT/client.env			
