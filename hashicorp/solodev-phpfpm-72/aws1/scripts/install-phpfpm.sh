@@ -39,6 +39,7 @@ echo "listen.owner = apache" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "listen.mode = 0770" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "chdir = /var/www" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 echo "pm.max_requests = 500" >> /etc/opt/remi/php72/php-fpm.d/www.conf
+echo "pm.max_children = 200" >> /etc/opt/remi/php72/php-fpm.d/www.conf
 
 #Update Hosts file to resolve local solodev
 echo "#Solodev PHP-FPM" >> /etc/hosts
