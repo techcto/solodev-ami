@@ -78,4 +78,4 @@ chmod 700 /root/check.sh
 # sed -i "s:REPLACE_WITH_LICENSE_SERVER:$LICENSE_SERVER:g" /root/check.sh
 # sed -i "s:REPLACE_WITH_DOCUMENT_ROOT:$DOCUMENT_ROOT:g" /root/check.sh
 (crontab -l 2>/dev/null; echo "*/2 * * * * php /root/restart.php") | crontab -
-(crontab -l 2>/dev/null; echo "0,15,30,45 * * * * php /root/check.sh") | crontab -
+(crontab -l 2>/dev/null; echo "0,15,30,45 * * * * /root/check.sh") | crontab -
