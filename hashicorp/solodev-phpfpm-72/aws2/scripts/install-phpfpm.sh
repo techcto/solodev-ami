@@ -47,6 +47,9 @@ echo "127.0.0.1 solodev" >> /etc/hosts
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/bin/composer
 
+#Install Redis Extension
+yum install -y php72-php-pecl-redis
+
 #Install IonCube
 wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
 tar -xzf ioncube_loaders_lin_x86-64.tar.gz
