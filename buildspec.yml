@@ -19,7 +19,7 @@ phases:
       - mkdir -p /tmp/Solodev
       - fn="$(aws s3 ls s3://solodev-release | sort | tail -n 1 | awk '{print $4}')"
       - aws s3 cp s3://solodev-release/$fn /tmp/Solodev/Solodev.zip
-      - unzip /tmp/Solodev/Solodev.zip /tmp/Solodev/
+      - unzip /tmp/Solodev/Solodev.zip -d /tmp/Solodev
       - rm -Rf /tmp/Solodev/Solodev.zip
       - ls -al
   build:
