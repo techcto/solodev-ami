@@ -46,7 +46,7 @@
     "provisioners": [
         {
             "type": "file",
-            "source": "hashicorp/solodev-phpfpm-72/aws1/scripts",
+            "source": "hashicorp/solodev-phpfpm-72/aws2/scripts",
             "destination": "/tmp"
         },
         {
