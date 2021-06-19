@@ -1,8 +1,5 @@
-#Install latest official release of Solodev
-mkdir -p /tmp/Solodev
-fn="$(aws s3 ls s3://solodev-release | sort | tail -n 1 | awk '{print $4}')"
-aws s3 cp s3://solodev-release/$fn /tmp/Solodev/Solodev.zip
-cd /tmp/Solodev/
-unzip Solodev.zip
-rm -Rf Solodev.zip
-ls -al
+#Install Solodev from /tmp
+mv /tmp/Solodev /var/www/solodev
+ls -al /var/www/solodev
+chown -Rf apache.apache /var/www/solodev
+chmod -Rf 2770 /var/www/solodev
