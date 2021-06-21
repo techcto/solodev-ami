@@ -1,9 +1,3 @@
-#Install Package Repos (REMI, EPEL)
-yum -y remove php* httpd*
-
-#Install Required Devtools
-yum -y install gcc-c++ gcc pcre-devel make zip unzip wget curl cmake git yum-utils sudo
-
 #Install Required Repos
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -14,6 +8,12 @@ yum --enablerepo=epel --disablerepo=amzn2-core -y install libwebp
 
 #Update all libs
 yum update -y
+
+#Install Package Repos (REMI, EPEL)
+yum -y remove php* httpd*
+
+#Install Required Devtools
+yum -y install gcc-c++ gcc pcre-devel make libzip libzstd zip unzip wget curl cmake git yum-utils sudo
 
 #Clear cache dir
 rm -Rf /var/cache/yum/base/packages
