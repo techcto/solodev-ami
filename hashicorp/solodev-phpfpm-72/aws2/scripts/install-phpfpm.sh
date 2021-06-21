@@ -18,6 +18,10 @@ php72-php-pecl-mongodb php72-php-pecl-apcu php72-php-pecl-oauth
 scl enable php72 'php -v'
 ln -s /usr/bin/php72 /usr/bin/php
 
+#Tmp hack
+rpm -e --nodeps libzip5
+yum install -y libzip
+
 #Configure PHP-FPM conf for Apache (php72-php.conf)
 rm -Rf /etc/httpd/conf.d/php.conf
 
