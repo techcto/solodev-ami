@@ -19,14 +19,14 @@ yum -y install tidy
 yum install -y php74-php-fpm php74-php-common \
 php74-php-devel php74-php-mysqli php74-php-mysqlnd php74-php-pdo_mysql \
 php74-php-gd php74-php-mbstring php74-php-pear php74-php-soap php74-php-tidy \
-php74-php-pecl-mongodb php74-php-pecl-apcu php74-php-pecl-oauth php74-php-zip 
+php74-php-pecl-mongodb php74-php-pecl-apcu php74-php-pecl-oauth
 scl enable php74 'php -v'
 ln -s /usr/bin/php74 /usr/bin/php
 
 #Tmp hack
-# yum install -y php74-php-zip 
-# rpm -e --nodeps libzip5
-# yum install -y libzip
+yum install -y php74-php-zip 
+rpm -e --nodeps libzip5
+yum install -y libzip
 
 #Configure PHP-FPM conf for Apache (php74-php.conf)
 rm -Rf /etc/httpd/conf.d/php.conf
@@ -64,7 +64,7 @@ yum install -y php74-php-pecl-redis
 wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
 tar -xzf ioncube_loaders_lin_x86-64.tar.gz
 cd ioncube/
-cp ioncube_loader_lin_7.2.so /opt/remi/php74/root/usr/lib64/php/modules/
+cp ioncube_loader_lin_7.4.so /opt/remi/php74/root/usr/lib64/php/modules/
 
 #Configure php.ini
 echo "short_open_tag = On" >> /etc/opt/remi/php74/php.ini
@@ -94,7 +94,7 @@ echo "opcache.enable=1" >>/etc/opt/remi/php74/php.ini
 echo "opcache.memory_consumption=128" >>/etc/opt/remi/php74/php.ini
 echo "opcache.max_accelerated_files=4000" >>/etc/opt/remi/php74/php.ini
 echo "opcache_revalidate_freq = 240" >>/etc/opt/remi/php74/php.ini
-echo "zend_extension=/opt/remi/php74/root/usr/lib64/php/modules/ioncube_loader_lin_7.2.so" >>/etc/opt/remi/php74/php.ini
+echo "zend_extension=/opt/remi/php74/root/usr/lib64/php/modules/ioncube_loader_lin_7.4.so" >>/etc/opt/remi/php74/php.ini
 
 #Start
 chkconfig php74-php-fpm on
