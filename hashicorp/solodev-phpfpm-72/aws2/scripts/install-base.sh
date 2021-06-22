@@ -13,7 +13,7 @@ yum update -y
 yum -y remove php* httpd*
 
 #Install Required Devtools
-yum -y install gcc-c++ gcc pcre-devel make zip unzip wget curl cmake git yum-utils sudo
+yum --enablerepo=remi-php72 -y install gcc-c++ gcc pcre-devel make zip unzip wget curl cmake git yum-utils sudo
 
 #Clear cache dir
 rm -Rf /var/cache/yum/base/packages
