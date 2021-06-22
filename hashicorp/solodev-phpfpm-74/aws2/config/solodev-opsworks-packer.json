@@ -1,0 +1,71 @@
+{
+    "variables": {
+        "aws_region": "{{env `AWS_REGION`}}",
+        "aws_ami_name": "solodev-cms-opsworks-v{{env `SOLODEV_RELEASE`}}",
+        "owner_account_id": "{{env `OWNER_ACCOUNT_ID`}}",
+        "guest1_account_id": "{{env `GUEST1_ACCOUNT_ID`}}",
+        "guest2_account_id": "{{env `GUEST2_ACCOUNT_ID`}}"
+    },
+
+    "builders": [{
+        "type": "amazon-ebs",
+        "region": "{{user `aws_region`}}",
+        "profile": "{{ user `aws_profile`}}",
+        "instance_type": "t2.small",
+        "ssh_username": "ec2-user",
+        "ami_name": "{{user `aws_ami_name`}}",
+        "ami_description": "Solodev CMS Opsworks Edition (Marketplace)",
+        "associate_public_ip_address": "true",
+        "source_ami_filter": {
+            "filters": {
+                "virtualization-type": "hvm",
+                "name": "amzn2-ami-hvm*-x86_64-ebs",
+                "root-device-type": "ebs"
+            },
+            "owners": [],
+            "most_recent": true
+        },
+        "launch_block_device_mappings": [
+            {
+                "device_name": "/dev/xvda",
+                "volume_size": 64,
+                "delete_on_termination": true
+            }
+        ],
+        "ami_block_device_mappings": [
+            {
+                "device_name": "/dev/xvda",
+                "volume_size": 64,
+                "delete_on_termination": true,
+                "volume_type": "gp2"
+            }
+        ]
+    }],
+
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "hashicorp/solodev-phpfpm-74/aws2/scripts",
+            "destination": "/tmp"
+        },
+        {
+            "type": "file",
+            "source": "/tmp/Solodev",
+            "destination": "/tmp/Solodev"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "ls -al /tmp",
+                "sudo chmod 700 /tmp/scripts/*",
+                "sudo /tmp/scripts/install-base.sh",
+                "sudo /tmp/scripts/install-httpd.sh",
+                "sudo /tmp/scripts/install-phpfpm.sh",
+                "sudo /tmp/scripts/install-node.sh",
+                "sudo /tmp/scripts/install-mongo.sh",
+                "sudo /tmp/scripts/install-solodev.sh",
+                "sudo /tmp/scripts/cleanup.sh"
+            ]
+        }
+    ]
+}
