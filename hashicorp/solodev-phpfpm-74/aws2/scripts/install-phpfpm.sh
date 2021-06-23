@@ -1,32 +1,18 @@
 yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum-config-manager --disable 'remi-php*'
-yum-config-manager --enable remi-php74
-
-#Install Tidy
-# TIDY_VERSION=5.1.25
-# mkdir -p /usr/local/src
-# cd /usr/local/src
-# curl -q https://codeload.github.com/htacg/tidy-html5/tar.gz/$TIDY_VERSION | tar -xz
-# cd tidy-html5-$TIDY_VERSION/build/cmake
-# cmake ../.. && make install
-# ln -s tidybuffio.h ../../../../include/buffio.h
-# cd /usr/local/src
-# rm -rf /usr/local/src/tidy-html5-$TIDY_VERSION
-yum -y install tidy
+yum-config-manager --setopt="remi-php74.priority=5" --enable remi-php74
 
 #Install PHP-FPM 7.4
-yum install -y php74-php-fpm php74-php-common \
+yum install -y tidy php74-php-fpm php74-php-common \
 php74-php-devel php74-php-mysqli php74-php-mysqlnd php74-php-pdo_mysql \
 php74-php-gd php74-php-mbstring php74-php-pear php74-php-soap php74-php-tidy \
-php74-php-pecl-mongodb php74-php-pecl-apcu php74-php-pecl-oauth
+php74-php-pecl-mongodb php74-php-pecl-apcu php74-php-pecl-oauth php74-php-pecl-zip php74-php-pecl-redis
 scl enable php74 'php -v'
 ln -s /usr/bin/php74 /usr/bin/php
 
 #Tmp hack
-yum install -y php74-php-zip 
-rpm -e --nodeps libzip5
-yum install -y libzip
+# rpm -e --nodeps libzip5
 
 #Configure PHP-FPM conf for Apache (php74-php.conf)
 rm -Rf /etc/httpd/conf.d/php.conf
@@ -56,9 +42,6 @@ echo "127.0.0.1 solodev" >> /etc/hosts
 #Install Composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/bin/composer
-
-#Install Redis Extension
-yum install -y php74-php-pecl-redis
 
 #Install IonCube
 wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
