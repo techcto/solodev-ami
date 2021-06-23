@@ -1,5 +1,5 @@
 #Install Required Repos
-yum --enablerepo=epel --disablerepo=amzn2-core -y install libwebp
+# yum --enablerepo=epel --disablerepo=amzn2-core -y install libwebp
 
 #Update all libs
 yum update -y
